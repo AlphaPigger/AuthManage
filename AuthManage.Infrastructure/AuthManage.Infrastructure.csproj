@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AuthManage.Domain\AuthManage.Domain.csproj" />
+    <ProjectReference Include="..\AuthManage.MVC\AuthManage.MVC.csproj" />
+  </ItemGroup>
+
+</Project>
