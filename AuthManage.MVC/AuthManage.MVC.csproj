@@ -6,11 +6,11 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.1.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\AuthManage.Domain\AuthManage.Domain.csproj" />
+    <ProjectReference Include="..\AuthManage.Infrastructure\AuthManage.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AuthManage.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -38,6 +39,7 @@ namespace AuthManage.MVC
             //连接Mysql数据库
             //var ConnectString = "server=localhost;port=3306;database=AuthManage;user=root;password=123456";
             //services.AddDbContextPool<DataContext>(options => options.UseMySql(ConnectString));
+            services.AddDbContextPool<DataContext>(options=>options.UseMySql(Configuration.GetConnectionString("MysqlConnectString"),b=>b.MigrationsAssembly("AuthManage.MVC")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
