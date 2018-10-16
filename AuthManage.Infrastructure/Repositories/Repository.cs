@@ -1,4 +1,5 @@
-﻿using AuthManage.Domain.IRepositories;
+﻿using AuthManage.Domain;
+using AuthManage.Domain.IRepositories;
 using AuthManage.MVC;
 using System;
 using System.Collections.Generic;

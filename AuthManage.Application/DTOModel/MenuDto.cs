@@ -5,13 +5,9 @@ using System.Text;
 
 namespace AuthManage.Application.DTOModel
 {
-    public class Department:BasicModel<int>
+    public class MenuDto:BasicModel<int>
     {
-        //部门名称
+        //功能名
         public string Name { get; set; }
-        //负责人
-        public string Manager { get; set; }
-        //联系电话
-        public string ContactNumber { get; set; }
     }
 }

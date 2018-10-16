@@ -1,4 +1,5 @@
-﻿using AuthManage.Domain.DomainModel;
+﻿using AuthManage.Domain;
+using AuthManage.Domain.DomainModel;
 using AuthManage.Domain.IRepositories;
 using AuthManage.MVC;
 using System;
@@ -13,6 +14,7 @@ namespace AuthManage.Infrastructure.Repositories
         {
 
         }
+
 
         public User CheckUser(string username,string password)
         {

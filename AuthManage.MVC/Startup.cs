@@ -36,8 +36,8 @@ namespace AuthManage.MVC
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             //连接Mysql数据库
-            var ConnectString = "server=localhost;port=3306;database=AuthManage;user=root;password=123456";
-            services.AddDbContextPool<DataContext>(options => options.UseMySql(ConnectString));
+            //var ConnectString = "server=localhost;port=3306;database=AuthManage;user=root;password=123456";
+            //services.AddDbContextPool<DataContext>(options => options.UseMySql(ConnectString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

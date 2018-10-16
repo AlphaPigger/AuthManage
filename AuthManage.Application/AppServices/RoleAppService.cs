@@ -6,11 +6,7 @@ using System.Text;
 
 namespace AuthManage.Application.AppServices
 {
-    public class UserAppService:AppService<UserDto>,IUserAppService
+    public class RoleAppService:AppService<RoleDto>,IRoleAppService
     {
-        public UserDto CheckUser(string username,string password)
-        {
-            return null;
-        }
     }
 }

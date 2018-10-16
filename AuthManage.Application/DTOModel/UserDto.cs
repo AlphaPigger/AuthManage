@@ -5,7 +5,7 @@ using System.Text;
 
 namespace AuthManage.Application.DTOModel
 {
-    public class User:BasicModel<int>
+    public class UserDto:BasicModel<int>
     {
         //用户名
         public string Username { get; set; }

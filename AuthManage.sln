@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthManage.MVC", "AuthManage.MVC\AuthManage.MVC.csproj", "{BB7F430C-D98F-46F8-8937-F5DD4ECC7282}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthManage.MVC", "AuthManage.MVC\AuthManage.MVC.csproj", "{BB7F430C-D98F-46F8-8937-F5DD4ECC7282}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthManage.Application", "AuthManage.Application\AuthManage.Application.csproj", "{5886DBC1-6295-45DA-9C41-F09E11C8F86F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthManage.Application", "AuthManage.Application\AuthManage.Application.csproj", "{5886DBC1-6295-45DA-9C41-F09E11C8F86F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthManage.Domain", "AuthManage.Domain\AuthManage.Domain.csproj", "{FEA8E525-9B05-4DB1-8076-7E8F3BA4D868}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthManage.Domain", "AuthManage.Domain\AuthManage.Domain.csproj", "{FEA8E525-9B05-4DB1-8076-7E8F3BA4D868}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthManage.Infrastructure", "AuthManage.Infrastructure\AuthManage.Infrastructure.csproj", "{42CD86AA-986E-4C0A-90B7-4148721E15FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthManage.Infrastructure", "AuthManage.Infrastructure\AuthManage.Infrastructure.csproj", "{42CD86AA-986E-4C0A-90B7-4148721E15FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
