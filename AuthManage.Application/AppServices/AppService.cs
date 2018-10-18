@@ -1,5 +1,6 @@
 ﻿using AuthManage.Application.IAppServices;
 using AuthManage.Domain.IRepositories;
+using AuthManage.Infrastructure.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Text;

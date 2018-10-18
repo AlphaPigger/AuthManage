@@ -30,7 +30,7 @@ namespace AuthManage.Infrastructure
         //模型映射关系
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //这种表映射关系的添加为Fluent API
+            //这种表映射关系的添加方式为Fluent API
             modelBuilder.ApplyConfiguration(new DepartmentUserMap());
             modelBuilder.ApplyConfiguration(new RoleUserMap());
             modelBuilder.ApplyConfiguration(new RoleMenuMap());

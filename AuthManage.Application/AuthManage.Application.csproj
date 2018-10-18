@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AuthManage.Domain\AuthManage.Domain.csproj" />
+    <ProjectReference Include="..\AuthManage.Infrastructure\AuthManage.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
