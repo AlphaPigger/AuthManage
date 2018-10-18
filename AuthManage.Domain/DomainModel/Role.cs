@@ -10,9 +10,8 @@ namespace AuthManage.Domain.DomainModel
     {
         //角色名
         public string Name { get; set; }
-        //用户
-        public ICollection<User> Users { get; set; }
-       
+
+        public ICollection<RoleUser> RoleUsers { get; set; }
         public ICollection<RoleMenu> RoleMenus { get; set; }
     }
 }

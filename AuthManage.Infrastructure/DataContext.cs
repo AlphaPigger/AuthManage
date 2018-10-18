@@ -1,5 +1,7 @@
 ﻿using AuthManage.Domain.DomainModel;
+using AuthManage.Domain.DomainModel.BusinessModel;
 using AuthManage.Domain.MappingModel;
+using AuthManage.Domain.RelationModel;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -18,19 +20,21 @@ namespace AuthManage.Infrastructure
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Menu> Menus { get; set; }
+        public DbSet<Project> Projects { get; set; }
+        public DbSet<Item> Items { get; set; }
+        //两个第三方关联表集合
+        public DbSet<RoleUser> RoleUsers { get; set; }
+        public DbSet<RoleMenu> RoleMenus { get; set; }
 
-        //连接数据库
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    var ConnectString = "server=localhost;port=3306;database=AuthManage;user=root;password=123456";
-        //    optionsBuilder.UseMySql(ConnectString);
-        //    base.OnConfiguring(optionsBuilder);
-        //}
 
         //模型映射关系
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //这种表映射关系的添加为Fluent API
+            modelBuilder.ApplyConfiguration(new DepartmentUserMap());
+            modelBuilder.ApplyConfiguration(new RoleUserMap());
             modelBuilder.ApplyConfiguration(new RoleMenuMap());
+            modelBuilder.ApplyConfiguration(new DepartmentUserMap());
             base.OnModelCreating(modelBuilder);
         }
     }

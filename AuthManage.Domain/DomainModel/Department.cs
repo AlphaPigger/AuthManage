@@ -14,7 +14,7 @@ namespace AuthManage.Domain.DomainModel
         public string Manager { get; set; }
         //联系电话
         public string ContactNumber { get; set; }
-        //用户
+        //用户(导航属性)
         public ICollection<User> Users { get; set; }
     }
 }

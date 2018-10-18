@@ -6,11 +6,12 @@ using System.Text;
 
 namespace AuthManage.Domain.RelationModel
 {
+    //Role和Menu的关联表
     public class RoleMenu
     {
         public int RoleID { get; set; }
-        public Role Role { get; set; }
         public int MenuID { get; set; }
+        public Role Role { get; set; }
         public Menu Menu { get; set; }
     }
 }

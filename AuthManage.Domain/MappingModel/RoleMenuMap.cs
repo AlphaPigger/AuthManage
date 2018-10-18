@@ -16,13 +16,10 @@ namespace AuthManage.Domain.MappingModel
         {
             //添加复合主键
             builder.HasKey(t => new { t.RoleID, t.MenuID });
-
-            //配置Role与RoleMenu的一对多关系
-            builder.HasOne(t => t.Role).WithMany(p => p.RoleMenus).HasForeignKey(t=>t.RoleID);
-
-            //配置Menu与RoleMenu的一对多关系
-            builder.HasOne(t=>t.Menu).WithMany(p=>p.RoleMenus).HasForeignKey(t=>t.MenuID);
-            
+            //配置Role表与RoleMenu表的一对多关系
+            builder.HasOne(t => t.Role).WithMany(p => p.RoleMenus).HasForeignKey(t => t.RoleID);
+            //配置Menu表与RoleMenu表的一对多关系
+            builder.HasOne(t => t.Menu).WithMany(p => p.RoleMenus).HasForeignKey(t => t.MenuID);
         }
     }
 }
