@@ -6,9 +6,11 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AuthManage.Application\AuthManage.Application.csproj" />
     <ProjectReference Include="..\AuthManage.Domain\AuthManage.Domain.csproj" />
     <ProjectReference Include="..\AuthManage.Infrastructure\AuthManage.Infrastructure.csproj" />
   </ItemGroup>

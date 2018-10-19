@@ -25,7 +25,6 @@ namespace AuthManage.Infrastructure.Repositories
                 return _dataContext.Set<User>().Find(tem.ID);
             }
             return null;
-
         }
     }
 }

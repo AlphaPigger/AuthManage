@@ -5,7 +5,12 @@ using System.Text;
 
 namespace AuthManage.Application.IAppServices
 {
-    public interface IDepartmentAppService:IAppService<DepartmentDto>
+    public interface IDepartmentAppService
     {
+        void AddDto(DepartmentDto dto);
+        void DeleteDto(DepartmentDto dto);
+        void DeleteDtoById(int id);
+        void UpdateDto(DepartmentDto dto);
+        List<DepartmentDto> GetAllDtos();
     }
 }

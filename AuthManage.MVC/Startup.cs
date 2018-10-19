@@ -2,7 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AuthManage.Application;
+using AuthManage.Application.AppServices;
+using AuthManage.Application.IAppServices;
+using AuthManage.Domain.IRepositories;
 using AuthManage.Infrastructure;
+using AuthManage.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -19,6 +24,8 @@ namespace AuthManage.MVC
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            //初始化映射关系
+            AuthManageMapper.Initialize();
         }
 
         public IConfiguration Configuration { get; }
@@ -38,6 +45,9 @@ namespace AuthManage.MVC
 
             //连接Mysql数据库
             services.AddDbContextPool<DataContext>(options=>options.UseMySql(Configuration.GetConnectionString("MysqlConnectString"),b=>b.MigrationsAssembly("AuthManage.MVC")));
+            //依赖注入
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserAppService, UserAppService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,7 +71,7 @@ namespace AuthManage.MVC
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Login}/{action=Index}/{id?}");
             });
         }
     }
