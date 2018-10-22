@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AuthManage.MVC.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20181018072754_init1")]
+    [Migration("20181022030715_init1")]
     partial class init1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -17,6 +17,60 @@ namespace AuthManage.MVC.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.1.3-rtm-32065")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
+
+            modelBuilder.Entity("AuthManage.Domain.DomainModel.BusinessModel.Item", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Hardware");
+
+                    b.Property<string>("Hardware_Detail");
+
+                    b.Property<bool>("Hardware_Status");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("Number");
+
+                    b.Property<int>("ProjectID");
+
+                    b.Property<string>("Software");
+
+                    b.Property<string>("Software_Detail");
+
+                    b.Property<bool>("Software_Status");
+
+                    b.Property<string>("TempterTest");
+
+                    b.Property<string>("TempterTest_Detail");
+
+                    b.Property<bool>("TempterTest_Status");
+
+                    b.Property<string>("Test");
+
+                    b.Property<string>("Test_Detail");
+
+                    b.Property<bool>("Test_Status");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("ProjectID");
+
+                    b.ToTable("Items");
+                });
+
+            modelBuilder.Entity("AuthManage.Domain.DomainModel.BusinessModel.Project", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Projects");
+                });
 
             modelBuilder.Entity("AuthManage.Domain.DomainModel.Department", b =>
                 {
@@ -102,6 +156,14 @@ namespace AuthManage.MVC.Migrations
                     b.HasIndex("UserID");
 
                     b.ToTable("RoleUsers");
+                });
+
+            modelBuilder.Entity("AuthManage.Domain.DomainModel.BusinessModel.Item", b =>
+                {
+                    b.HasOne("AuthManage.Domain.DomainModel.BusinessModel.Project", "Project")
+                        .WithMany("Items")
+                        .HasForeignKey("ProjectID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("AuthManage.Domain.DomainModel.User", b =>
