@@ -3,29 +3,83 @@
 }
 @model AuthManage.MVC.Models.LoginModel
 <!DOCTYPE html>
-
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-    <!--引入css-->
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css"/>
-    <!--引入js-->
-    <script src="~/lib/jquery/dist/jquery.js"></script>
-    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <!--css引入-->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/AdminLTE.css" /><!--建立在bootstrap之上的css-->
+    <link rel="stylesheet" href="~/css/custom.css" /><!--自定义css-->
+    <!--js引入-->
+    <!--验证-->
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <!--Cookie-->
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/js/jquery.cookie.js"></script>
+
 </head>
-<body>
-    <form action="~/Login/Index" method="post">
-        @Html.ValidationSummary(true)
-        @Html.LabelFor(m => m.Username)
-        @Html.TextBoxFor(m => m.Username)
-        @Html.ValidationMessageFor(m => m.Username)
-        @Html.LabelFor(m => m.Password)
-        @Html.TextBoxFor(m => m.Password)
-        @Html.ValidationMessageFor(m => m.Password)
-        <input type="submit" value="提交" />
-    </form>
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="#">Authorization</a>
+        </div>
+        <div class="login-box-body">
+            <p class="login-box-msg">权限管理系统</p>
+            @Html.ValidationSummary(true)
+            <form action="~/Login/Index" method="post" onsubmit="onSubmit()">
+                <div class="form-group has-feedback">
+                    @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = "用户名" })
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                    @Html.ValidationMessageFor(m => m.Username)
+                </div>
+                <div class="form-group has-feedback">
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "密码" })
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                    @Html.ValidationMessageFor(m => m.Password)
+                </div>
+                <div class="row">
+                    <div class="col-xs-8">
+                        <div class="checkbox icheck">
+                            <label class="label_new">
+                                <input id="RememberMe" type="checkbox">记住我
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-xs-4">
+                        <input type="submit" value="登录" class="btn btn-primary btn-block btn-flat" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
+
+<script type="text/javascript">
+    $(function () { 
+        //验证是否设置了cookie
+        if ($.cookie("username") != undefined)
+        {
+            //置“记住我”单选框
+            $("#RememberMe").attr("checked", "checked");
+            //置用户名、密码文本框
+            $("#Username").val($.cookie("username"));
+            $("#Password").val($.cookie("password"));
+        }
+    });
+
+    //每执行一次submit，实现相应操作
+    function onSubmit()
+    {
+        if ($("#RememberMe:checked").length > 0)//设置cookie
+        {
+            $.cookie("username", $("#Username").val(), { expires: 7 });
+            $.cookie("password", $("#Password").val(), { expires: 7 });
+        }
+        else//清除cookie
+        {
+            $.removeCookie("username");
+            $.removeCookie("password");
+        }
+    }
+</script>
+

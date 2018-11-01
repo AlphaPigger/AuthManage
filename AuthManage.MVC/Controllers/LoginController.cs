@@ -28,7 +28,7 @@ namespace AuthManage.MVC.Controllers
                 var obj=_userAppService.CheckUser(loginModel.Username,loginModel.Password);
                 if (obj==null)//用户名或密码错误
                 {
-                    ModelState.AddModelError("","用户名或密码错误！");
+                    ModelState.AddModelError("","用户名或密码错误");
                 }
                 else
                 {
