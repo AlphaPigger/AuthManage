@@ -12,6 +12,7 @@ namespace AuthManage.Application.IAppServices
         void DeleteDto(UserDto dto);
         void DeleteDtoById(int id);
         void UpdateDto(UserDto dto);
+        UserDto GetDtoByID(int id);
         List<UserDto> GetAllDtos();
         UserDto CheckUser(string username,string password);
     }

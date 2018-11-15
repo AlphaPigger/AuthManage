@@ -11,6 +11,7 @@ namespace AuthManage.Domain.IRepositories
         void DeleteEntity(TEntity entity);
         void DeleteEntityById(int id);
         void UpdateEntity(TEntity entity);
+        TEntity GetEntityByID(int id);
         List<TEntity> GetAllEntities();
     }
 }

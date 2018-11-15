@@ -10,7 +10,11 @@ namespace AuthManage.Domain.DomainModel
     {
         //角色名
         public string Name { get; set; }
-
+        //创建时间
+        public string CreateTime { get; set; }
+        //创建人
+        public string CreateUser { get; set; }
+        //导航属性
         public ICollection<RoleUser> RoleUsers { get; set; }
         public ICollection<RoleMenu> RoleMenus { get; set; }
     }

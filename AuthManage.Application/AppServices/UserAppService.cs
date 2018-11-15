@@ -35,6 +35,10 @@ namespace AuthManage.Application.AppServices
         {
             _userRepository.UpdateEntity(Mapper.Map<User>(dto));
         }
+        public UserDto GetDtoByID(int id)
+        {
+            return Mapper.Map<UserDto>(_userRepository.GetEntityByID(id));
+        }
         public List<UserDto> GetAllDtos()
         {
             return Mapper.Map<List<UserDto>>(_userRepository.GetAllEntities());

@@ -75,9 +75,9 @@ namespace AuthManage.MVC.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ContactNumber");
+                    b.Property<string>("CreateTime");
 
-                    b.Property<string>("Manager");
+                    b.Property<string>("CreateUser");
 
                     b.Property<string>("Name");
 
@@ -91,6 +91,14 @@ namespace AuthManage.MVC.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("Address");
+
+                    b.Property<string>("CreateTime");
+
+                    b.Property<string>("CreateUser");
+
+                    b.Property<int>("MenuType");
+
                     b.Property<string>("Name");
 
                     b.HasKey("ID");
@@ -102,6 +110,10 @@ namespace AuthManage.MVC.Migrations
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CreateTime");
+
+                    b.Property<string>("CreateUser");
 
                     b.Property<string>("Name");
 
@@ -115,11 +127,15 @@ namespace AuthManage.MVC.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ContactNumber");
+                    b.Property<string>("CreateTime");
+
+                    b.Property<string>("CreateUser");
 
                     b.Property<int>("DepartmentID");
 
                     b.Property<string>("Password");
+
+                    b.Property<string>("PostType");
 
                     b.Property<string>("Username");
 

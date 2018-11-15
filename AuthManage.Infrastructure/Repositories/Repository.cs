@@ -42,6 +42,11 @@ namespace AuthManage.Infrastructure.Repositories
             Save();
         }
 
+        public TEntity GetEntityByID(int id)
+        {
+            return GetEntity(id);
+        }
+
         public List<TEntity> GetAllEntities()
         {
             return _dataContext.Set<TEntity>().ToList();

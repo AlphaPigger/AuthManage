@@ -3,9 +3,7 @@
   "private": true,
   "dependencies": {
     "jQuery": "2.2.0",
-    "jquery-validation": "1.14.0",
-    "jquery-validation-unobtrusive": "v3.2.6",
     "bootstrap": "v3.3.7",
-    "font-awesome": "Font-Awesome#v4.7.0"
+    "jquery.cookie": "jquery-cookie#v1.4.1"
   }
 }

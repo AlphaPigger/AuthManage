@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using AuthManage.MVC.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace AuthManage.MVC.Controllers
 {
@@ -12,6 +13,7 @@ namespace AuthManage.MVC.Controllers
     {
         public IActionResult Index()
         {
+            ViewBag.User = HttpContext.Session.GetString("CurrentUser");
             return View();
         }
 

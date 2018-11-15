@@ -37,18 +37,23 @@ namespace AuthManage.MVC
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
+                options.CheckConsentNeeded = context => false;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             //连接Mysql数据库
             services.AddDbContextPool<DataContext>(options=>options.UseMySql(Configuration.GetConnectionString("MysqlConnectString"),b=>b.MigrationsAssembly("AuthManage.MVC")));
             //依赖注入
-            services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserAppService, UserAppService>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IDepartmentAppService, DepartmentAppService>();
+            services.AddScoped<IDepartmentRepository,DepartmentRepository>();
+            services.AddScoped<IRoleAppService,RoleAppService>();
+            services.AddScoped<IRoleRepository,RoleRepository>();
+            //Session服务
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -67,6 +72,8 @@ namespace AuthManage.MVC
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            //使用Session
+            app.UseSession();
 
             app.UseMvc(routes =>
             {

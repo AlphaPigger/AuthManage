@@ -10,10 +10,10 @@ namespace AuthManage.Domain.DomainModel
     {
         //部门名称
         public string Name { get; set; }
-        //负责人
-        public string Manager { get; set; }
-        //联系电话
-        public string ContactNumber { get; set; }
+        //创建时间
+        public string CreateTime { get; set; }
+        //创建人
+        public string CreateUser { get; set; }
         //用户(导航属性)
         public ICollection<User> Users { get; set; }
     }

@@ -10,15 +10,17 @@ namespace AuthManage.Domain.DomainModel
     {
         //用户名
         public string Username { get; set; }
-        //密码
+        //密码（默认密码123456）
         public string Password { get; set; }
-        //联系号码
-        public string ContactNumber { get; set; }
-        //外键（指向部门）
+        //技术类别
+        public string PostType { get; set; }
+        //创建时间
+        public string CreateTime { get; set; }
+        //创建人
+        public string CreateUser { get; set; }
+        //导航属性
         public int DepartmentID { get; set; }
-        //部门(引用属性)
         public Department Department { get; set; }
-
         public ICollection<RoleUser> RoleUsers { get; set; }
     }
 }

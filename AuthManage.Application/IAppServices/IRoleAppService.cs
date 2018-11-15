@@ -11,6 +11,7 @@ namespace AuthManage.Application.IAppServices
         void DeleteDto(RoleDto dto);
         void DeleteDtoById(int id);
         void UpdateDto(RoleDto dto);
+        RoleDto GetDtoByID(int id);
         List<RoleDto> GetAllDtos();
     }
 }

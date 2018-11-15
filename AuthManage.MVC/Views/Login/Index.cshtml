@@ -5,17 +5,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!--css引入-->
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="~/css/AdminLTE.css" /><!--建立在bootstrap之上的css-->
-    <link rel="stylesheet" href="~/css/custom.css" /><!--自定义css-->
-    <!--js引入-->
-    <!--验证-->
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
-    <!--Cookie-->
-    <script src="~/lib/jquery/dist/jquery.js"></script>
-    <script src="~/js/jquery.cookie.js"></script>
-
+    <title>登录页面</title>
+    <meta name="Login" http-equiv="content-type"/>
+    <environment names="Development">
+        <!--css引入-->
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/AdminLTE.css" /><!--建立在bootstrap之上的css-->
+        <link rel="stylesheet" href="~/css/site.css" /><!--自定义css-->
+        <!--js引入-->
+        <!--Cookie-->
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/jquery.cookie/jquery.cookie.js"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <!--css引入-->
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/AdminLTE.css" /><!--建立在bootstrap之上的css-->
+        <link rel="stylesheet" href="~/css/site.css" /><!--自定义css-->
+        <!--js引入-->
+        <!--Cookie-->
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/jquery.cookie/jquery.cookie.js"></script>
+    </environment>
 </head>
 <body class="hold-transition login-page">
     <div class="login-box">

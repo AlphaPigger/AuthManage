@@ -10,7 +10,15 @@ namespace AuthManage.Domain.DomainModel
     {
         //功能名
         public string Name { get; set; }
-
+        //功能地址
+        public string Address { get; set; }
+        //功能类型（0表示导航菜单，1表示具体按钮）
+        public int MenuType { get; set; }
+        //创建时间
+        public string CreateTime { get; set; }
+        //创建人
+        public string CreateUser { get; set; }
+        //导航属性
         public ICollection<RoleMenu> RoleMenus { get; set; }
     }
 }

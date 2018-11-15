@@ -16,13 +16,12 @@ namespace AuthManage.Infrastructure.Repositories
             _dataContext = dataContext;
         }
 
-
         public User CheckUser(string username,string password)
         {
             var obj = from r in _dataContext.Set<User>() where r.Username == username && r.Password == password select r;
             foreach (var tem in obj)
             {
-                return _dataContext.Set<User>().Find(tem.ID);
+                return tem;
             }
             return null;
         }
