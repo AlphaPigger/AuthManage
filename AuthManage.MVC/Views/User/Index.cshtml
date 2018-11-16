@@ -70,7 +70,10 @@
                                 @Html.DisplayFor(m => item.Department)
                             </td>
                             <td class="text-center">
-                                @Html.DisplayFor(m => item.Roles)
+                                @foreach (var tem in item.Roles)
+                                {
+                                    <span>@tem</span>
+                                }
                             </td>
                             <td class="text-center">
                                 <a href="~/User/Edit/@item.ID" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i></a>

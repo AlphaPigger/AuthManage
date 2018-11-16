@@ -46,12 +46,12 @@ namespace AuthManage.MVC
             //连接Mysql数据库
             services.AddDbContextPool<DataContext>(options=>options.UseMySql(Configuration.GetConnectionString("MysqlConnectString"),b=>b.MigrationsAssembly("AuthManage.MVC")));
             //依赖注入
-            services.AddScoped<IUserAppService, UserAppService>();
-            services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IDepartmentAppService, DepartmentAppService>();
             services.AddScoped<IDepartmentRepository,DepartmentRepository>();
             services.AddScoped<IRoleAppService,RoleAppService>();
             services.AddScoped<IRoleRepository,RoleRepository>();
+            services.AddScoped<IUserAppService, UserAppService>();
+            services.AddScoped<IUserRepository, UserRepository>();
             //Session服务
             services.AddSession();
         }

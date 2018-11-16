@@ -6,6 +6,7 @@ using AuthManage.Application.DTOModel;
 using AuthManage.Application.IAppServices;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using X.PagedList;
 
 namespace AuthManage.MVC.Controllers
@@ -17,9 +18,13 @@ namespace AuthManage.MVC.Controllers
 
         //依赖注入
         private IUserAppService _userAppService;
-        public UserController(IUserAppService userAppService)
+        private IDepartmentAppService _departmentAppService;
+        private IRoleAppService _roleAppService;
+        public UserController(IUserAppService userAppService,IDepartmentAppService departmentAppService,IRoleAppService roleAppService)
         {
             _userAppService = userAppService;
+            _departmentAppService = departmentAppService;
+            _roleAppService = roleAppService;
         }
 
         //主界面
@@ -33,6 +38,7 @@ namespace AuthManage.MVC.Controllers
         //增加
         public IActionResult Add()
         {
+            GenerateViewData();
             return View();
         }
         [HttpPost]
@@ -62,6 +68,7 @@ namespace AuthManage.MVC.Controllers
         {
             UserDto editDto = _userAppService.GetDtoByID(id);
             GenerateTempData(editDto);
+            GenerateViewData();
             return View(editDto);
         }
         [HttpPost]
@@ -83,6 +90,35 @@ namespace AuthManage.MVC.Controllers
         {
             temp.CreateTime = editDto.CreateTime;
             temp.CreateUser = editDto.CreateUser;
+        }
+
+        //生成界面显示数据
+        private void GenerateViewData()
+        {
+            //技术类别
+            List<SelectListItem> selectListItems = new List<SelectListItem>();
+            selectListItems.Add(new SelectListItem("硬件工程师", "硬件工程师"));
+            selectListItems.Add(new SelectListItem("基带工程师", "基带工程师"));
+            selectListItems.Add(new SelectListItem("信号处理工程师", "信号处理工程师"));
+            selectListItems.Add(new SelectListItem("嵌入式工程师", "嵌入式工程师"));
+            selectListItems.Add(new SelectListItem("软件工程师", "软件工程师"));
+            ViewData["PostTypes"] = selectListItems;
+            //部门
+            selectListItems = new List<SelectListItem>();
+            var departments=_departmentAppService.GetAllDtos();
+            foreach (var tem in departments)
+            {
+                selectListItems.Add(new SelectListItem(tem.Name,tem.Name.ToString()));
+            }
+            ViewData["Departments"] = selectListItems;
+            //角色
+            selectListItems = new List<SelectListItem>();
+            var roles = _roleAppService.GetAllDtos();
+            foreach (var tem in roles)
+            {
+                selectListItems.Add(new SelectListItem(tem.Name, tem.Name.ToString()));
+            }
+            ViewData["Roles"] = selectListItems;
         }
     }
 }

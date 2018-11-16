@@ -31,5 +31,10 @@ namespace AuthManage.Application.DTOModel
         //角色
         [Display(Name ="角色")]
         public List<string> Roles { get; set; }
+
+        public UserDto()
+        {
+            Roles = new List<string>();
+        }
     }
 }
