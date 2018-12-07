@@ -13,9 +13,9 @@
 <div class="main sidebar-minified">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <i class="glyphicon glyphicon-align-left red"></i><strong>创建</strong>
+            <i class="glyphicon glyphicon-align-left red"></i><strong>修改</strong>
         </div>
-        @using (Html.BeginForm("Add", "User", FormMethod.Post))
+        @using (Html.BeginForm("Edit", "User", FormMethod.Post))
         {
             <div class="form-horizontal">
                 <div class="panel-body">
@@ -50,7 +50,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.Roles, new { @class = "control-label col-md-2" })
                         <div class="col-md-2">
-                            @Html.DropDownListFor(model => model.Roles, ViewData["Roles"] as List<SelectListItem>, new { @id = "Roles", @style = "width:350px" })
+                            @Html.DropDownListFor(model => model.Roles, ViewData["Roles"] as List<SelectListItem>,"请选择", new { @id = "Roles", @style = "width:350px" })
                             @Html.ValidationMessageFor(model => model.Roles, "", new { @class = "red" })
                         </div>
                     </div>

@@ -34,7 +34,6 @@ namespace AuthManage.Infrastructure
             modelBuilder.ApplyConfiguration(new DepartmentUserMap());
             modelBuilder.ApplyConfiguration(new RoleUserMap());
             modelBuilder.ApplyConfiguration(new RoleMenuMap());
-            modelBuilder.ApplyConfiguration(new DepartmentUserMap());
             base.OnModelCreating(modelBuilder);
         }
     }

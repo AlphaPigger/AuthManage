@@ -35,30 +35,29 @@ namespace AuthManage.Application.AppServices
             temp.CreateTime = dto.CreateTime;
             temp.CreateUser = dto.CreateUser;
             //转换部门标识DepartmentID
-            var departments=_dataContext.Departments;
+            var departments=_dataContext.Departments;//获取所有部门
             foreach (var tem in departments)
             {
                 if (tem.Name == dto.Department)
                 {
-                    temp.DepartmentID = tem.ID;
+                    temp.DepartmentID = tem.ID;//获取部门对应id
                 }
             }
             //转换角色标识RoleID
             var roleusers = new List<RoleUser>();
-            for(int i=0; i < dto.Roles.Count; i++)
+            var roles = _dataContext.Roles;//获取所有角色
+            for (int i=0; i < dto.Roles.Count; i++)
             {
-                var roles = _dataContext.Roles;
                 foreach (var tem in roles)
                 {
                     if (tem.Name == dto.Roles[i])
                     {
-                        roleusers.Add(new RoleUser(tem.ID,dto.ID));
+                        roleusers.Add(new RoleUser(tem.ID,dto.ID));//将角色id和用户id一起放入数据库
                     }
                 }
             }
             temp.RoleUsers = roleusers;
-            _userRepository.AddEntity(temp);
-            //_userRepository.AddEntity(Mapper.Map<User>(dto));
+            _userRepository.AddEntity(temp);//添加实体
         }
         public void DeleteDto(UserDto dto)
         {
@@ -68,13 +67,88 @@ namespace AuthManage.Application.AppServices
         {
             _userRepository.DeleteEntityById(id);
         }
-        public void UpdateDto(UserDto dto)
+        public void UpdateDto(UserDto dto)//更新操作改变不了RoleUser表？？？
         {
-            _userRepository.UpdateEntity(Mapper.Map<User>(dto));
+            /**删除数据库对应数据**/
+            DeleteDtoById(dto.ID);
+
+            /**增加新的数据到数据库**/
+            //新建实体对象
+            User userDomain = new User();
+            //将Dto转换为Domain
+            userDomain.ID = dto.ID;
+            userDomain.Username = dto.Username;
+            userDomain.Password = dto.Password;
+            userDomain.PostType = dto.PostType;
+            userDomain.CreateTime = dto.CreateTime;
+            userDomain.CreateUser = dto.CreateUser;
+            //转换部门id
+            var departments = _dataContext.Departments;
+            foreach(var tem in departments)
+            {
+                if (tem.Name == dto.Department)
+                {
+                    userDomain.DepartmentID = tem.ID;
+                }
+            }
+            //转换角色id
+            var roleusers = new List<RoleUser>();
+            var roles = _dataContext.Roles;//获取所有角色
+            for(int i=0; i < dto.Roles.Count; i++)//遍历用户角色
+            {
+                foreach (var tem in roles)//遍历所有角色
+                {
+                    if (tem.Name == dto.Roles[i])//如果角色名相等
+                    {
+                        roleusers.Add(new RoleUser(tem.ID,dto.ID));
+                    }
+                 }
+            }
+            userDomain.RoleUsers = roleusers;//赋值所有角色用户表
+            //更新到数据库
+            _userRepository.AddEntity(userDomain);
         }
         public UserDto GetDtoByID(int id)
         {
-            return Mapper.Map<UserDto>(_userRepository.GetEntityByID(id));
+            //获取用户实体对象
+            User userDomain=_userRepository.GetEntityByID(id);
+            //转化为数据传输对象
+            UserDto userDto = new UserDto();
+            userDto.ID = userDomain.ID;
+            userDto.Username = userDomain.Username;
+            userDto.Password = userDomain.Password;
+            userDto.PostType = userDomain.PostType;
+            userDto.CreateTime = userDomain.CreateTime;
+            userDto.CreateUser = userDomain.CreateUser;
+            //转化部门id
+            var departments=_dataContext.Departments;//获取所有部门
+            foreach (var tem in departments)
+            {
+                if (tem.ID == userDomain.DepartmentID)
+                {
+                    userDto.Department = tem.Name;
+                }
+            }
+            //转化角色id
+            var roleusers = _dataContext.RoleUsers;//获取所有RoleUser表
+            var roles = _dataContext.Roles;//获取所有Role表
+            foreach (var tem in roleusers)
+            {
+                if (tem.UserID == userDomain.ID)//根据UserID获取RoleID
+                {
+                    //根据RoleID获取角色名
+                    foreach(var tem2 in roles)
+                    {
+                        if (tem2.ID == tem.RoleID)
+                        {
+                            //获取角色名
+                            userDto.Roles.Add(tem2.Name);
+                        }
+                    }
+                }
+            }
+            //返回dto模型
+            return userDto;
         }
         public List<UserDto> GetAllDtos()
         {
@@ -90,7 +164,7 @@ namespace AuthManage.Application.AppServices
                 userDto.PostType = userDomain.PostType;
                 userDto.CreateTime = userDomain.CreateTime;
                 userDto.CreateUser = userDomain.CreateUser;
-                var departments=_dataContext.Departments;
+                var departments=_dataContext.Departments;//获取所有部门
                 //转换部门ID
                 foreach (var tem in departments)
                 {

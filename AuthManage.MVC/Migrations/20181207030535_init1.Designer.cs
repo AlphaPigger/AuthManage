@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AuthManage.MVC.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20181115071053_init1")]
+    [Migration("20181207030535_init1")]
     partial class init1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
