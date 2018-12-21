@@ -12,7 +12,8 @@
         <div class="panel-heading">
             <strong class="strong">用户列表</strong>
             <div class="panel-actions">
-                <a href="~/User/Add" class="btn-default"><i class="glyphicon glyphicon-plus"></i></a>
+                @*<a href="~/User/Add" class="btn-default"><i class="glyphicon glyphicon-plus"></i></a>*@
+                @await Component.InvokeAsync("UserAdd")
             </div>
             <div class="panel-actions">
                 <form action="~/User/Index" class="form-inline">
@@ -70,14 +71,20 @@
                                 @Html.DisplayFor(m => item.Department)
                             </td>
                             <td class="text-center">
-                                @foreach (var tem in item.Roles)
+                                @for(int i=0;i<item.Roles.Count; i++)
                                 {
-                                    <span>@tem</span>
+                                    <span>@item.Roles[i]</span>
+                                    @if (i < item.Roles.Count - 1)
+                                    {
+                                        <span>;</span>
+                                    }
                                 }
                             </td>
                             <td class="text-center">
-                                <a href="~/User/Edit/@item.ID" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i></a>
-                                <a href="~/User/Delete/@item.ID" class="btn btn-danger" onclick="return Delete()"><i class="glyphicon glyphicon-trash"></i></a>
+                                @*<a href="~/User/Edit/@item.ID" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i></a>
+        <a href="~/User/Delete/@item.ID" class="btn btn-danger" onclick="return Delete()"><i class="glyphicon glyphicon-trash"></i></a>*@
+                                @await Component.InvokeAsync("UserEdit", item.ID)
+                                @await Component.InvokeAsync("UserDelete",item.ID)
                             </td>
                         </tr>
                         }

@@ -11,7 +11,8 @@
         <div class="panel-heading">
             <strong class="strong">部门列表</strong>
             <div class="panel-actions">
-                <a href="~/Department/Add" class="btn-default"><i class="glyphicon glyphicon-plus"></i></a>
+                @*<a href="~/Department/Add" class="btn-default"><i class="glyphicon glyphicon-plus"></i></a>*@
+                @await Component.InvokeAsync("DepartmentAdd")
             </div>
             <div class="panel-actions">
                 <form action="~/Department/Index" class="form-inline">
@@ -54,8 +55,10 @@
                                     @Html.DisplayFor(m => item.CreateUser)
                                 </td>
                                 <td class="text-center">
-                                    <a href="~/Department/Edit/@item.ID" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i></a>
-                                    <a href="~/Department/Delete/@item.ID" class="btn btn-danger" onclick="return Delete()"><i class="glyphicon glyphicon-trash"></i></a>
+                                    @*<a href="~/Department/Edit/@item.ID" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i></a>*@
+                                    @await Component.InvokeAsync("DepartmentEdit",item.ID)
+                                    @*<a href="~/Department/Delete/@item.ID" class="btn btn-danger" onclick="return Delete()"><i class="glyphicon glyphicon-trash"></i></a>*@
+                                    @await Component.InvokeAsync("DepartmentDelete",item.ID)
                                 </td>
                             </tr>
                         }

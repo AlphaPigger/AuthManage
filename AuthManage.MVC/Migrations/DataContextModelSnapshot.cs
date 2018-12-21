@@ -101,6 +101,8 @@ namespace AuthManage.MVC.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<int>("ParentID");
+
                     b.HasKey("ID");
 
                     b.ToTable("Menus");

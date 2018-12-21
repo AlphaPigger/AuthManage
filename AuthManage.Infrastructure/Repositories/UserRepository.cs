@@ -25,5 +25,17 @@ namespace AuthManage.Infrastructure.Repositories
             }
             return null;
         }
+
+        //根据用户名获取用户ID
+        public int GetUserIDByUserName(string Name)
+        {
+            int userID = 0;
+            var obj = from r in _dataContext.Set<User>() where r.Username == Name select r;
+            foreach(var tem in obj)
+            {
+                userID = tem.ID;
+            }
+            return userID;
+        }
     }
 }

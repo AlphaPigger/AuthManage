@@ -8,6 +8,8 @@ namespace AuthManage.Domain.DomainModel
 {
     public class Menu:BasicModel<int>
     {
+        //父级ID
+        public int ParentID { get; set; }
         //功能名
         public string Name { get; set; }
         //功能地址

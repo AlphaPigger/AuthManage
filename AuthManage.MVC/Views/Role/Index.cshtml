@@ -12,7 +12,8 @@
         <div class="panel-heading">
             <strong class="strong">角色列表</strong>
             <div class="panel-actions">
-                <a href="~/Role/Add" class="btn-default"><i class="glyphicon glyphicon-plus"></i></a>
+                @*<a href="~/Role/Add" class="btn-default"><i class="glyphicon glyphicon-plus"></i></a>*@
+                @await Component.InvokeAsync("RoleAdd")
             </div>
             <div class="panel-actions">
                 <form action="~/Role/Index" class="form-inline">
@@ -55,8 +56,10 @@
                                     @Html.DisplayFor(m => item.CreateUser)
                                 </td>
                                 <td class="text-center">
-                                    <a href="~/Role/Edit/@item.ID" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i></a>
-                                    <a href="~/Role/Delete/@item.ID" class="btn btn-danger" onclick="return Delete()"><i class="glyphicon glyphicon-trash"></i></a>
+                                    @*<a href="~/Role/Edit/@item.ID" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i></a>
+        <a href="~/Role/Delete/@item.ID" class="btn btn-danger" onclick="return Delete()"><i class="glyphicon glyphicon-trash"></i></a>*@
+                                    @await Component.InvokeAsync("RoleEdit", item.ID)
+                                    @await Component.InvokeAsync("RoleDelete",item.ID)
                                 </td>
                             </tr>
                         }

@@ -18,6 +18,7 @@ namespace AuthManage.MVC.Controllers
         }
         public IActionResult Index()
         {
+            HttpContext.Session.SetString("CurrentUser", "");//置空当前Session中登录用户（当执行退出操作时）
             return View();
         }
         [HttpPost]
@@ -40,6 +41,7 @@ namespace AuthManage.MVC.Controllers
                 else
                 {
                     HttpContext.Session.SetString("CurrentUser", obj.Username);
+                    HttpContext.Session.SetString("CurrentUserID",obj.ID.ToString());
                     return RedirectToAction("Index", "Department");
                 }
             }

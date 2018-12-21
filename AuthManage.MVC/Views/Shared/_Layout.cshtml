@@ -46,30 +46,37 @@
                     <br />
                     <div class="sidebar-menu">
                         <ul class="nav nav-sidebar">
-                            <li>
-                                <a href="~/Department/Index" style="background-color:transparent;"><i class="glyphicon glyphicon-align-justify"></i>组织机构管理</a>
-                            </li>
-                            <li>
-                                <a href="~/Role/Index" style="background-color:transparent;"><i class="glyphicon glyphicon-compressed"></i>角色管理</a>
-                            </li>
-                            <li>
-                                <a href="~/User/Index" style="background-color:transparent;"><i class="glyphicon glyphicon-user"></i>用户管理</a>
-                            </li>
-                            <li>
-                                <a href="~/Menu/Index" style="background-color:transparent;"><i class="glyphicon glyphicon-asterisk"></i>功能管理</a>
-                            </li>
-                            <li>
-                                <a href="~/RoleMenu/Index" style="background-color:transparent;"><i class="glyphicon glyphicon-briefcase"></i>角色授权</a>
-                            </li>
-                            <li>
-                                <a href="#" style="background-color:transparent;"><i class="glyphicon glyphicon-edit"></i>业务管理<span class="glyphicon glyphicon-chevron-down pull-right"></span></a>
-                                <ul>
-                                    <li><a href="~/Project/Index"  rel="noopener noreferrer"><i class="glyphicon glyphicon-globe"></i>项目管理</a></li>
-                                    <li><a href="~/Haedware/Index" rel="noopener noreferrer"><i class="glyphicon glyphicon-screenshot"></i>硬件管理</a></li>
-                                </ul>
-                            </li>
+                            @await Component.InvokeAsync("Navigation");
                         </ul>
                     </div>
+                    @*<div class="sidebar-menu">
+                     
+                        <ul class="nav nav-sidebar">
+            <li>
+                <a href="~/Department/Index" style="background-color:transparent;"><i class="glyphicon glyphicon-align-justify"></i>组织机构管理</a>
+            </li>
+            <li>
+                <a href="~/Role/Index" style="background-color:transparent;"><i class="glyphicon glyphicon-compressed"></i>角色管理</a>
+            </li>
+            <li>
+                <a href="~/User/Index" style="background-color:transparent;"><i class="glyphicon glyphicon-user"></i>用户管理</a>
+            </li>
+            <li>
+
+                <a href="~/Menu/Index" style="background-color:transparent;"><i class="glyphicon glyphicon-asterisk"></i>功能管理</a>
+            </li>
+            <li>
+                <a href="~/RoleMenu/Index" style="background-color:transparent;"><i class="glyphicon glyphicon-briefcase"></i>角色授权</a>
+            </li>
+            <li>
+                <a href="#" style="background-color:transparent;"><i class="glyphicon glyphicon-edit"></i>业务管理<span class="glyphicon glyphicon-chevron-down pull-right"></span></a>
+                <ul>
+                    <li><a href="~/Project/Index"  rel="noopener noreferrer"><i class="glyphicon glyphicon-globe"></i>项目管理</a></li>
+                    <li><a href="~/Haedware/Index" rel="noopener noreferrer"><i class="glyphicon glyphicon-screenshot"></i>硬件管理</a></li>
+                </ul>
+            </li>
+        </ul>
+                    </div>*@
                 </div>
                 <div class="sidebar-footer">
                     <div class="sidebar-brand">

@@ -18,35 +18,36 @@ namespace AuthManage.Infrastructure.Repositories
         }
 
         /**实现接口下的方法**/
+        //添加实体
         public void AddEntity(TEntity entity)
         {
             _dataContext.Set<TEntity>().Add(entity);
             Save();
         }
-
+        //根据实体对象删除实体
         public void DeleteEntity(TEntity entity)
         {
             _dataContext.Set<TEntity>().Remove(entity);
             Save();
         }
-
+        //根据标识号删除实体
         public void DeleteEntityById(int id)
         {
             _dataContext.Set<TEntity>().Remove(GetEntity(id));
             Save();
         }
-
+        //更新实体
         public void UpdateEntity(TEntity entity)
         {
             _dataContext.Set<TEntity>().Update(entity);
             Save();
         }
-
+        //根据标识号查询实体
         public TEntity GetEntityByID(int id)
         {
             return GetEntity(id);
         }
-
+        //查询所有实体
         public List<TEntity> GetAllEntities()
         {
             return _dataContext.Set<TEntity>().ToList();

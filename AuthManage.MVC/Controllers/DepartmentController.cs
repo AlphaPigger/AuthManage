@@ -10,7 +10,7 @@ using X.PagedList;
 
 namespace AuthManage.MVC.Controllers
 {
-    public class DepartmentController : Controller
+    public class DepartmentController : ControllerBase
     {
         //中间数据
         private static DepartmentDto temp = new DepartmentDto();

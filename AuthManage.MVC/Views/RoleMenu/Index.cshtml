@@ -1,0 +1,183 @@
+﻿@{
+    ViewData["Title"] = "功能授权";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model X.PagedList.IPagedList<AuthManage.Application.DTOModel.RoleDto>
+@using X.PagedList.Mvc.Core
+
+<div class="main sidebar-minified col-md-9">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <strong class="strong">角色列表</strong>
+            <div class="panel-actions">
+                <form action="~/RoleMenu/Index" class="form-inline">
+                    <span class="form-control" style="border:0px;margin-bottom:1px">每页指定记录数：</span>
+                    @Html.TextBox("PageSize", ViewBag.PageSize as string, new { @class = "form-control", @style = "margin-top:-1px;width:150px;margin-right:20px", maxlength = 1, placeholder = "请输入分页记录数" })
+                    <button type="submit" class="btn btn-default" style="padding-left:0px;padding-right:0px;margin-right:30px"><i class="glyphicon glyphicon-search"></i></button>
+                </form>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div style="overflow:scroll;">
+                <table class="table table-bordered table-striped table-condensed table-hover">
+                    <thead>
+                        <tr>
+                            <th class="text-center">
+                                角色编号
+                            </th>
+                            <th class="text-center" style="display:none">
+                                @Html.DisplayNameFor(m=>Model.AsEnumerable().Single().ID)
+                            </th>
+                            <th class="text-center">
+                                @Html.DisplayNameFor(m => Model.AsEnumerable().Single().Name)
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int tem = 1;
+                        }
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="text-center">
+                                    @tem
+                                </td>
+                                <td class="text-center" style="display:none">
+                                    @Html.DisplayFor(m=>item.ID)
+                                </td>
+                                <td class="text-center">
+                                    @Html.DisplayFor(m => item.Name)
+                                </td>
+                            </tr>
+                            tem = tem + 1;
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="14" style="margin-top:1px">
+                                每页 @Model.PageSize 条记录，共 @Model.TotalItemCount 条记录&nbsp;&nbsp;&nbsp;&nbsp;第 @Model.PageNumber 页，共 @Model.PageCount 页
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, PageSize = ViewBag.PageSize }), new PagedListRenderOptions { LinkToFirstPageFormat = "首页", LinkToPreviousPageFormat = "上一页", LinkToNextPageFormat = "下一页", LinkToLastPageFormat = "末页", MaximumPageNumbersToDisplay = 5, DisplayItemSliceAndTotal = false })
+        </div>
+    </div>
+</div>
+<div class="col-md-3">
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">功能权限</h3>
+            <div class="pull-right box-tools">
+                <button id="btnSavePermission" class="btn btn-primary" type="button" data-original-title="保存" data-toggle="tooltip" data-widget="">
+                    <i class="fa fa-save"></i>&nbsp;&nbsp;保存
+                </button>
+            </div>
+        </div>
+        <div class="box-body">
+            <div id="treeDiv" class="portlet-body">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--引入树形控件css-->
+<link rel="stylesheet" href="~/lib/jstree/dist/themes/default/style.css"/>
+<!--引入树形控件js-->
+<script src="~/lib/jstree/dist/jstree.js"></script>
+<!--引入弹窗组件-->
+<script src="~/lib/layer/layer.js"></script>
+
+<script type="text/javascript">
+    //初始化
+    initTree();
+    function initTree() {
+        $.jstree.destroy();
+        $.ajax({
+            type: "post",
+            url: "/RoleMenu/GetMenuTreeData",    //获取数据的ajax请求地址
+            success: function (data) {
+                $('#treeDiv').jstree({       //创建JsTtree
+                    'core': {
+                        'data': data,        //绑定JsTree数据
+                        "multiple": true    //是否多选
+                    },
+                    "plugins": ["state", "types", "wholerow", "checkbox",],  //配置信息
+                    "checkbox": {
+                        "keep_selected_style": false
+                        //"three_state": false//取消父级子级选中级联关系
+                    }
+                })
+                $("#treeDiv").on("ready.jstree", function (e, data) {   //树创建完成事件
+                    data.instance.open_all();    //展开所有节点
+                });
+            }
+        });
+    }
+
+    //点击行事件
+    var RoleID = 0;//角色ID
+    $("table>tbody>tr").click(function () {//标记选择器
+        //移除样式
+        $("table>tbody>tr").removeAttr("style");
+        //添加背景色
+        $(this).attr("style", "background-color:#beebff");
+        //加载右侧树结构
+        var td = $(this).find("td");//获取点击行的列
+        RoleID = td.eq(1).text();//获取第二列的值
+        loadPermissionByRole(RoleID);//异步通过角色ID获取相应功能
+    });
+    function loadPermissionByRole(RoleID) {
+        $.ajax({
+            type: "post",
+            url: "/RoleMenu/GetPermissionByRole?RoleID=" + RoleID,
+            success: function (data) {
+                $("#treeDiv").find("li").each(function () {
+                    $("#treeDiv").jstree("uncheck_node", $(this));
+                    for (var i = 0; i < data.length; i++){
+                        if (data[i] == $(this).attr("id")) {
+                            $("#treeDiv").jstree("check_node", $(this));
+                        }
+                    }
+                    //为什么indexOf检索不了？
+                    //if (data.indexOf($(this).attr("id")) != -1) {
+                    //    $("#treeDiv").jstree("check_node", $(this));
+                    //}
+                });
+            }
+        });
+    }
+
+    //保存当前设置的角色功能关系
+    $("#btnSavePermission").click(function () {
+        if (RoleID == 0) {
+            layer.alert("请选择角色。");
+            return;
+        }
+        //整合功能集合
+        var checkedMenu = $('#treeDiv').jstree().get_checked(true);//获取选中节点对象
+        //遍历整合
+        var permissions = [];
+        $.each(checkedMenu, function (i, item) {
+            permissions.push({ "RoleId": RoleID, "MenuId": item.id });
+        })
+        //异步请求
+        $.ajax({
+            type: "post",
+            url: "/RoleMenu/SavePermission",
+            data: { "roleId": RoleID, "roleMenus": permissions },
+            success: function (data) {
+                if (data.result = true) {
+                    layer.alert("保存成功！");
+                }
+                else {
+                    layer.alert("保存失败！");
+                }
+            }
+        })
+    });
+</script>
+

@@ -9,5 +9,7 @@ namespace AuthManage.Domain.IRepositories
     {
         //检测用户是否存在，如果存在则返回用户，否则返回空
         User CheckUser(string username,string password);
+        //根据用户名获取用户ID
+        int GetUserIDByUserName(string Name);
     }
 }

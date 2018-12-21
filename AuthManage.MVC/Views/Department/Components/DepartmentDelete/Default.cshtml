@@ -1,0 +1,9 @@
+﻿@model List<AuthManage.Application.DTOModel.MenuDto>
+
+@foreach (var tem in Model)
+{
+    if (tem.Name == "组织机构删除")
+    {
+        <a href="~/Department/Delete/@ViewBag.departmentID" class="btn btn-danger" onclick="return Delete()"><i class="glyphicon glyphicon-trash"></i></a>
+    }
+}

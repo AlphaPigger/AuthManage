@@ -10,7 +10,7 @@ using X.PagedList;
 
 namespace AuthManage.MVC.Controllers
 {
-    public class RoleController : Controller
+    public class RoleController : ControllerBase
     {
         //中间数据
         private static RoleDto temp=new RoleDto();

@@ -26,6 +26,10 @@ namespace AuthManage.Application
                 cfg.CreateMap<ProjectDto, Project>();
                 cfg.CreateMap<Item, ItemDto>();
                 cfg.CreateMap<ItemDto, Item>();
+                cfg.CreateMap<RoleUser, RoleDto>();
+                cfg.CreateMap<RoleUserDto, RoleUser>();
+                cfg.CreateMap<RoleMenu,RoleMenuDto>();
+                cfg.CreateMap<RoleMenuDto, RoleMenu>();
             });
         }
     }

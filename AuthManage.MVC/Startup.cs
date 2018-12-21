@@ -25,7 +25,7 @@ namespace AuthManage.MVC
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            //初始化映射关系
+            //初始化映射关系（Entity和Dto之间的映射关系）
             AuthManageMapper.Initialize();
         }
 
@@ -44,7 +44,8 @@ namespace AuthManage.MVC
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             //连接Mysql数据库
-            services.AddDbContextPool<DataContext>(options=>options.UseMySql(Configuration.GetConnectionString("MysqlConnectString"),b=>b.MigrationsAssembly("AuthManage.MVC")));
+            var mysqlConnectString = Configuration.GetConnectionString("MysqlConnectString");
+            services.AddDbContextPool<DataContext>(options=>options.UseMySql(mysqlConnectString,b=>b.MigrationsAssembly("AuthManage.MVC")));
             //依赖注入
             services.AddScoped<IDepartmentAppService, DepartmentAppService>();
             services.AddScoped<IDepartmentRepository,DepartmentRepository>();
@@ -52,6 +53,12 @@ namespace AuthManage.MVC
             services.AddScoped<IRoleRepository,RoleRepository>();
             services.AddScoped<IUserAppService, UserAppService>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IMenuAppService, MenuAppService>();
+            services.AddScoped<IMenuRepository, MenuRepository>();
+            services.AddScoped<IRoleUserAppService, RoleUserAppService>();
+            services.AddScoped<IRoleUserRepository, RoleUserRepository>();
+            services.AddScoped<IRoleMenuAppService, RoleMenuAppService>();
+            services.AddScoped<IRoleMenuRepository, RoleMenuRepository>();
             //Session服务
             services.AddSession();
         }
@@ -61,10 +68,12 @@ namespace AuthManage.MVC
         {
             if (env.IsDevelopment())
             {
+                //开发环境异常处理
                 app.UseDeveloperExceptionPage();
             }
             else
             {
+                //生成环境异常处理
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
@@ -74,7 +83,7 @@ namespace AuthManage.MVC
             app.UseCookiePolicy();
             //使用Session
             app.UseSession();
-
+            //使用MVC，设置默认路由为系统登录
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

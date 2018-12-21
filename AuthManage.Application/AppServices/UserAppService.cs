@@ -13,15 +13,17 @@ namespace AuthManage.Application.AppServices
 {
     public class UserAppService:IUserAppService
     {
-        //用户管理仓储接口
-        private IUserRepository _userRepository;
-        //数据库上下文接口
-        private DataContext _dataContext;
+        private IUserRepository _userRepository;//用户管理仓储接口
+        private DataContext _dataContext;//数据库上下文接口
+        private IRoleRepository _roleRepository;
+        private IRoleUserRepository _roleUserRepository;
         //依赖注入
-        public UserAppService(IUserRepository userRepository,DataContext dataContext)
+        public UserAppService(IUserRepository userRepository,DataContext dataContext,IRoleRepository roleRepository,IRoleUserRepository roleUserRepository)
         {
             _userRepository = userRepository;
             _dataContext = dataContext;
+            _roleRepository = roleRepository;
+            _roleUserRepository = roleUserRepository;
         }
         public void AddDto(UserDto dto)
         {
@@ -44,20 +46,34 @@ namespace AuthManage.Application.AppServices
                 }
             }
             //转换角色标识RoleID
-            var roleusers = new List<RoleUser>();
-            var roles = _dataContext.Roles;//获取所有角色
-            for (int i=0; i < dto.Roles.Count; i++)
+            //var roleusers = new List<RoleUser>();
+            //var roles = _dataContext.Roles;//获取所有角色
+            //for (int i=0; i < dto.Roles.Count; i++)
+            //{
+            //    foreach (var tem in roles)
+            //    {
+            //        if (tem.Name == dto.Roles[i])
+            //        {
+            //            roleusers.Add(new RoleUser(tem.ID,dto.ID));//将角色id和用户id一起放入数据库
+            //        }
+            //    }
+            //}
+            //temp.RoleUsers = roleusers;
+            _userRepository.AddEntity(temp);//添加用户实体
+            //更新角色用户关系到RoleUser表
+            int userID = _userRepository.GetUserIDByUserName(dto.Username);//根据用户名获取用户ID
+            var roles=_roleRepository.GetAllEntities();
+            foreach(var role in roles)
             {
-                foreach (var tem in roles)
+                for(int i=0; i < dto.Roles.Count; i++)
                 {
-                    if (tem.Name == dto.Roles[i])
+                    if (role.Name == dto.Roles[i])
                     {
-                        roleusers.Add(new RoleUser(tem.ID,dto.ID));//将角色id和用户id一起放入数据库
+                        //更新到RoleUser表
+                        _roleUserRepository.AddEntity(new RoleUser(role.ID,userID));
                     }
                 }
             }
-            temp.RoleUsers = roleusers;
-            _userRepository.AddEntity(temp);//添加实体
         }
         public void DeleteDto(UserDto dto)
         {

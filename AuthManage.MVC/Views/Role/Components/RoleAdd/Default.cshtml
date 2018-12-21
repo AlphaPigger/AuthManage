@@ -1,0 +1,9 @@
+﻿@model List<AuthManage.Application.DTOModel.MenuDto>
+
+@foreach (var tem in Model)
+{
+    if (tem.Name == "角色增加")
+    {
+        <a href="~/Role/Add" class="btn-default"><i class="glyphicon glyphicon-plus"></i></a>
+    }
+}

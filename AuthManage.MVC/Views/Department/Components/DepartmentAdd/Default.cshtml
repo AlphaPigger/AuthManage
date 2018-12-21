@@ -1,0 +1,9 @@
+﻿@model List<AuthManage.Application.DTOModel.MenuDto>
+
+@foreach (var tem in Model)
+{
+    if (tem.Name == "组织机构增加")
+    {
+<a href="~/Department/Add" class="btn-default"><i class="glyphicon glyphicon-plus"></i></a>
+    }
+}

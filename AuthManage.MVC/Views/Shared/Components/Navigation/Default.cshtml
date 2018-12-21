@@ -1,0 +1,32 @@
+﻿@model List<AuthManage.Application.DTOModel.MenuDto>
+@foreach (var menu in Model)
+{
+    if (menu.ParentName == null||menu.ParentName=="")//判断是否为导航菜单
+    {   
+        <li>
+            <a href="@menu.Address" style="background-color:transparent;">
+                @switch (menu.Name)
+                {
+                    case "组织机构管理":
+                        <i class="glyphicon glyphicon-align-justify"></i>
+                        break;
+                    case "角色管理":
+                        <i class="glyphicon glyphicon-compressed"></i>
+                        break;
+                    case "用户管理":
+                        <i class="glyphicon glyphicon-user"></i>
+                        break;
+                    case "功能管理":
+                        <i class="glyphicon glyphicon-asterisk"></i>
+                        break;
+                    case "角色授权":
+                        <i class="glyphicon glyphicon-briefcase"></i>
+                                break;
+                    default:break;
+                        }
+                        @menu.Name
+             </a>
+        </li>
+    }
+}
+

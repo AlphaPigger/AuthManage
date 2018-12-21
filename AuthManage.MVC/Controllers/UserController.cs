@@ -51,8 +51,9 @@ namespace AuthManage.MVC.Controllers
                 userDto.CreateUser = HttpContext.Session.GetString("CurrentUser");
                 _userAppService.AddDto(userDto);
                 //重定向
-                return RedirectToAction("Index","User");
+                return RedirectToAction("Index", "User");
             }
+            GenerateViewData();//需要重新生成一次界面数据
             return View(userDto);
         }
 
@@ -83,6 +84,7 @@ namespace AuthManage.MVC.Controllers
                 //重定向
                 return RedirectToAction("Index","User");
             }
+            GenerateViewData();//需要重新生成一次界面数据
             return View(userDto);
         }
 
@@ -96,6 +98,7 @@ namespace AuthManage.MVC.Controllers
         private void GenerateViewData()
         {
             //技术类别
+            //Text是界面显示的，Value是与后端交互的
             List<SelectListItem> selectListItems = new List<SelectListItem>();
             selectListItems.Add(new SelectListItem("硬件工程师", "硬件工程师"));
             selectListItems.Add(new SelectListItem("基带工程师", "基带工程师"));

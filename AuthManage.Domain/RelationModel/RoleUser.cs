@@ -12,7 +12,7 @@ namespace AuthManage.Domain.RelationModel
         public int UserID { get; set; }
         public Role Role { get; set; }
         public User User { get; set; }
-        public RoleUser(int roleID,int userID)
+        public RoleUser(int roleID, int userID)
         {
             RoleID = roleID;
             UserID = userID;

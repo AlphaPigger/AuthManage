@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewData["Title"] = "增加功能";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model AuthManage.Application.DTOModel.MenuDto
+
+<div class="main sidebar-minified">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <i class="glyphicon glyphicon-align-left red"></i><strong>创建</strong>
+        </div>
+        @using (Html.BeginForm("Add", "Menu", FormMethod.Post))
+        {
+            <div class="form-horizontal">
+                <div class="panel-body">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ParentName, new { @class = "control-label col-md-2" })
+                        <div class="col-md-2">
+                            @Html.DropDownListFor(model => model.ParentName, ViewData["Parents"] as List<SelectListItem> ,new { @class = "form-control input-sm", @style = "width:350px" })
+                            @Html.ValidationMessageFor(model => model.ParentName, "", new { @class = "red" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+                        <div class="col-md-2">
+                            @Html.TextBoxFor(model => model.Name, new { @class = "form-control input-sm", @style = "width:350px" })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "red" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Address, new { @class = "control-label col-md-2" })
+                        <div class="col-md-2">
+                            @Html.TextBoxFor(model => model.Address, new { @class = "form-control input-sm", @style = "width:350px" })
+                            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "red" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.MenuType, new { @class = "control-label col-md-2" })
+                        <div class="col-md-2">
+                            @Html.DropDownListFor(model => model.MenuType, ViewData["MenuTypes"] as List<SelectListItem>, new { @class = "form-control input-sm", @style = "width:350px" })
+                            @Html.ValidationMessageFor(model => model.MenuType, "", new { @class = "red" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <button type="submit" class="btn btn-sm btn-success" style="margin-left:250px"><i class="glyphicon glyphicon-record"></i>确认</button>
+                <button type="reset" class="btn btn-sm btn-danger" style="margin-left:50px"><i class="glyphicon glyphicon-ban-circle"></i>重置</button>
+            </div>
+        }
+    </div>
+</div>
+

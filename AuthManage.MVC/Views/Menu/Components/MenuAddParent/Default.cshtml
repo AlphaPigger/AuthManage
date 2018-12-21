@@ -1,0 +1,9 @@
+﻿@model List<AuthManage.Application.DTOModel.MenuDto>
+
+@foreach (var tem in Model)
+{
+    if (tem.Name == "功能顶级增加")
+    {
+<a href="~/Menu/AddParent" class="btn-default">新增顶级</a>
+    }
+}

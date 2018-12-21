@@ -1,0 +1,9 @@
+﻿@model List<AuthManage.Application.DTOModel.MenuDto>
+
+@foreach (var tem in Model)
+{
+    if (tem.Name == "组织机构修改")
+    {
+        <a href="~/Department/Edit/@ViewBag.departmentID" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i></a>
+    }
+}
