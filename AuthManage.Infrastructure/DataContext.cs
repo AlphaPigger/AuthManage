@@ -20,12 +20,15 @@ namespace AuthManage.Infrastructure
         public DbSet<Role> Roles { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Menu> Menus { get; set; }
-        public DbSet<Project> Projects { get; set; }
-        public DbSet<Item> Items { get; set; }
         //两个第三方关联表集合
         public DbSet<RoleUser> RoleUsers { get; set; }
         public DbSet<RoleMenu> RoleMenus { get; set; }
-
+        //业务表
+        public DbSet<Project> Projects { get; set; }
+        public DbSet<Hardware> Hardwares { get; set; }
+        public DbSet<ItemBaseOnHardware> ItemBaseOnHardwares { get; set; }
+        public DbSet<Item> Items { get; set; }
+        public DbSet<Record> Records { get; set; } 
 
         //模型映射关系
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -34,6 +37,9 @@ namespace AuthManage.Infrastructure
             modelBuilder.ApplyConfiguration(new DepartmentUserMap());
             modelBuilder.ApplyConfiguration(new RoleUserMap());
             modelBuilder.ApplyConfiguration(new RoleMenuMap());
+            modelBuilder.ApplyConfiguration(new ProjectHardwareMap());
+            modelBuilder.ApplyConfiguration(new HardwareItemBaseOnHardwareMap());
+            modelBuilder.ApplyConfiguration(new ItemBaseOnHardwareRecord());
             base.OnModelCreating(modelBuilder);
         }
     }

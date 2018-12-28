@@ -1,5 +1,6 @@
 ﻿using AuthManage.Domain;
 using AuthManage.Domain.IRepositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,7 +62,7 @@ namespace AuthManage.Infrastructure.Repositories
         //根据id获取实体
         private TEntity GetEntity(int id)
         {
-            return _dataContext.Set<TEntity>().Find(id);
+            return _dataContext.Set<TEntity>().Find(id); ;
         }
     }
 }

@@ -2,14 +2,16 @@
 using AuthManage.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AuthManage.MVC.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20181221074828_init3")]
+    partial class init3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,39 +43,19 @@ namespace AuthManage.MVC.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("CreateTime");
-
-                    b.Property<string>("CreateUser");
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Items");
-                });
-
-            modelBuilder.Entity("AuthManage.Domain.DomainModel.BusinessModel.ItemBaseOnHardware", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd();
-
                     b.Property<int>("HardwareID");
 
                     b.Property<string>("Name");
 
-                    b.Property<string>("Remark");
+                    b.Property<string>("Record");
 
                     b.Property<int>("Status");
-
-                    b.Property<string>("UpdateTime");
-
-                    b.Property<string>("UpdateUser");
 
                     b.HasKey("ID");
 
                     b.HasIndex("HardwareID");
 
-                    b.ToTable("ItemBaseOnHardwares");
+                    b.ToTable("Items");
                 });
 
             modelBuilder.Entity("AuthManage.Domain.DomainModel.BusinessModel.Project", b =>
@@ -92,26 +74,6 @@ namespace AuthManage.MVC.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Projects");
-                });
-
-            modelBuilder.Entity("AuthManage.Domain.DomainModel.BusinessModel.Record", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("ItemBaseOnHardwareID");
-
-                    b.Property<string>("Remark");
-
-                    b.Property<string>("UpdateTime");
-
-                    b.Property<string>("UpdateUser");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("ItemBaseOnHardwareID");
-
-                    b.ToTable("Records");
                 });
 
             modelBuilder.Entity("AuthManage.Domain.DomainModel.Department", b =>
@@ -226,19 +188,11 @@ namespace AuthManage.MVC.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("AuthManage.Domain.DomainModel.BusinessModel.ItemBaseOnHardware", b =>
+            modelBuilder.Entity("AuthManage.Domain.DomainModel.BusinessModel.Item", b =>
                 {
                     b.HasOne("AuthManage.Domain.DomainModel.BusinessModel.Hardware", "Hardware")
-                        .WithMany("ItemBaseOnHardwares")
+                        .WithMany("Items")
                         .HasForeignKey("HardwareID")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("AuthManage.Domain.DomainModel.BusinessModel.Record", b =>
-                {
-                    b.HasOne("AuthManage.Domain.DomainModel.BusinessModel.ItemBaseOnHardware", "ItemBaseOnHardware")
-                        .WithMany("Records")
-                        .HasForeignKey("ItemBaseOnHardwareID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

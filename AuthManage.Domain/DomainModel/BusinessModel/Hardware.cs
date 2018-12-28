@@ -5,17 +5,19 @@ using System.Text;
 
 namespace AuthManage.Domain.DomainModel.BusinessModel
 {
-    public class Project:BasicModel<int>
+    public class Hardware : BasicModel<int>
     {
-        //工程名
+        //名称
         public string Name { get; set; }
-        //描述
-        public string Description { get; set; }
         //创建时间
         public string CreateTime { get; set; }
         //创建人
         public string CreateUser { get; set; }
-        //硬件
-        public ICollection<Hardware> Hardwares { get; set; }
+
+        //外键
+        public int ProjectID { get; set; }
+        //引用属性
+        public Project Project { get; set; }
+        public ICollection<ItemBaseOnHardware> ItemBaseOnHardwares { get; set; }
     }
 }

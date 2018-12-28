@@ -2,14 +2,16 @@
 using AuthManage.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AuthManage.MVC.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20181228073109_init6")]
+    partial class init6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -61,13 +63,7 @@ namespace AuthManage.MVC.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<string>("Remark");
-
                     b.Property<int>("Status");
-
-                    b.Property<string>("UpdateTime");
-
-                    b.Property<string>("UpdateUser");
 
                     b.HasKey("ID");
 

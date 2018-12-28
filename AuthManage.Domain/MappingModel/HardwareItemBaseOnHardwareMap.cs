@@ -7,11 +7,11 @@ using System.Text;
 
 namespace AuthManage.Domain.MappingModel
 {
-    public class ProjectItemMap: IEntityTypeConfiguration<Item>
+    public class HardwareItemBaseOnHardwareMap: IEntityTypeConfiguration<ItemBaseOnHardware>
     {
-        public void Configure(EntityTypeBuilder<Item> builder)
+        public void Configure(EntityTypeBuilder<ItemBaseOnHardware> builder)
         {
-            builder.HasOne(p => p.Project).WithMany(i => i.Items).HasForeignKey(t=>t.ProjectID);
+            builder.HasOne(p => p.Hardware).WithMany(i => i.ItemBaseOnHardwares).HasForeignKey(t=>t.HardwareID);
         }
     }
 }

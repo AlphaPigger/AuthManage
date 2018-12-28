@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "项目增加";
+}
+
+@model AuthManage.Application.DTOModel.BusinessModel.ProjectDto
+
+<div class="main sidebar-minified">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <i class="glyphicon glyphicon-align-left red"></i><strong>增加</strong>
+        </div>
+        @using (Html.BeginForm("Add", "Project", FormMethod.Post))
+        {
+            <div class="form-horizontal">
+                <div class="panel-body">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+                        <div class="col-md-2">
+                            @Html.TextBoxFor(model => model.Name, new { @class = "form-control input-sm" })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "red" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
+                        <div class="col-md-2">
+                            @Html.TextBoxFor(model => model.Description, new { @class = "form-control input-sm" })
+                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "red" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button type="submit" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-record"></i>确认</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button type="reset" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-ban-circle"></i>重置</button>
+            </div>
+        }
+    </div>
+</div>
+

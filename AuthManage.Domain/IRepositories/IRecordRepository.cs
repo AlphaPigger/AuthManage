@@ -5,7 +5,9 @@ using System.Text;
 
 namespace AuthManage.Domain.IRepositories
 {
-    public interface IItemRepository:IRepository<Item>
+    public interface IRecordRepository:IRepository<Record>
     {
+        //根据外键获取所有Record
+        List<Record> GetRecordsByItemBaseOnHardwareID(int id);
     }
 }

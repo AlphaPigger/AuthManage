@@ -6,9 +6,9 @@ using System.Text;
 
 namespace AuthManage.Infrastructure.Repositories
 {
-    public class ItemRepository:Repository<Item>,IItemRepository
+    public class HardwareRepository:Repository<Hardware>, IHardwareRepository
     {
-        public ItemRepository(DataContext dataContext):base(dataContext)
+        public HardwareRepository(DataContext dataContext):base(dataContext)
         {
 
         }

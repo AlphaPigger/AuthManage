@@ -7,10 +7,10 @@ namespace AuthManage.Application.IAppServices
 {
     public interface IItemAppService
     {
-        void AddDto(ItemDto dto);
-        void DeleteDto(ItemDto dto);
-        void DeleteDtoById(int id);
-        void UpdateDto(ItemDto dto);
+        void AddDto(ItemDto itemDto);
+        void DeleteDtoByID(int id);
+        void Update(ItemDto itemDto);
+        ItemDto GetDtoByID(int id);
         List<ItemDto> GetAllDtos();
     }
 }

@@ -22,14 +22,18 @@ namespace AuthManage.Application
                 cfg.CreateMap<User, UserDto>();
                 cfg.CreateMap<Menu, MenuDto>();
                 cfg.CreateMap<MenuDto, Menu>();
-                cfg.CreateMap<Project, ProjectDto>();
-                cfg.CreateMap<ProjectDto, Project>();
-                cfg.CreateMap<Item, ItemDto>();
-                cfg.CreateMap<ItemDto, Item>();
                 cfg.CreateMap<RoleUser, RoleDto>();
                 cfg.CreateMap<RoleUserDto, RoleUser>();
                 cfg.CreateMap<RoleMenu,RoleMenuDto>();
                 cfg.CreateMap<RoleMenuDto, RoleMenu>();
+                cfg.CreateMap<Project, ProjectDto>();
+                cfg.CreateMap<ProjectDto, Project>();
+                cfg.CreateMap<Hardware, HardwareDto>();
+                cfg.CreateMap<HardwareDto, Hardware>();
+                cfg.CreateMap<ItemBaseOnHardware, ItemDto>();
+                cfg.CreateMap<ItemDto, ItemBaseOnHardware>();
+                cfg.CreateMap<Item,ItemDto>();
+                cfg.CreateMap<ItemDto,Item>();
             });
         }
     }

@@ -59,6 +59,16 @@ namespace AuthManage.MVC
             services.AddScoped<IRoleUserRepository, RoleUserRepository>();
             services.AddScoped<IRoleMenuAppService, RoleMenuAppService>();
             services.AddScoped<IRoleMenuRepository, RoleMenuRepository>();
+            services.AddScoped<IProjectAppService,ProjectAppService>();
+            services.AddScoped<IProjectRepository,ProjectRepository>();
+            services.AddScoped<IHardwareAppService,HardwareAppService>();
+            services.AddScoped<IHardwareRepository,HardwareRepository>();
+            services.AddScoped<IItemBaseOnHardwareAppService,ItemBaseOnHardwareAppService>();
+            services.AddScoped<IItemBaseOnHardwareRepository,ItemBaseOnHardwareRepository>();
+            services.AddScoped<IItemAppService,ItemAppService>();
+            services.AddScoped<IItemRepository, ItemRepository>();
+            services.AddScoped<IRecordAppService,RecordAppService > ();
+            services.AddScoped<IRecordRepository, RecordRepository>();
             //Session服务
             services.AddSession();
         }

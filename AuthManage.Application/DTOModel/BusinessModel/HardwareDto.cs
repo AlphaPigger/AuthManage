@@ -6,16 +6,19 @@ using System.Text;
 
 namespace AuthManage.Application.DTOModel.BusinessModel
 {
-    public class ProjectDto:BasicModel<int>
+    public class HardwareDto:BasicModel<int>
     {
-        [Display(Name ="项目名称")]
+        [Display(Name ="硬件名称")]
         public string Name { get; set; }
         [Display(Name ="创建时间")]
         public string CreateTime { get; set; }
         [Display(Name ="创建人")]
         public string CreateUser { get; set; }
-        //描述
-        [Display(Name ="项目描述")]
-        public string Description { get; set; }
+        //所属工程
+        [Display(Name ="所属工程")]
+        public string Project { get; set; }
+        //包含条目
+        [Display(Name ="条目")]
+        public List<string> Items { get; set; }
     }
 }

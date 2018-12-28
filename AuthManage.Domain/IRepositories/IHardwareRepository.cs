@@ -5,7 +5,7 @@ using System.Text;
 
 namespace AuthManage.Domain.IRepositories
 {
-    public interface IItemRepository:IRepository<Item>
+    public interface IHardwareRepository:IRepository<Hardware>
     {
     }
 }
