@@ -1,0 +1,15 @@
+﻿
+@{
+    Layout = null;
+}
+
+@model List<AuthManage.Application.DTOModel.MenuDto>
+
+@foreach (var tem in Model)
+{
+    if (tem.Name == "硬件增加")
+    {
+        <a href="@tem.Address" class="btn-default"><i class="glyphicon glyphicon-plus"></i></a>
+    }
+
+}

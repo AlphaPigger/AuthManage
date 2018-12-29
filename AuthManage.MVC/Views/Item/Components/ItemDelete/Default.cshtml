@@ -1,0 +1,15 @@
+﻿
+@{
+    Layout = null;
+}
+
+@model List<AuthManage.Application.DTOModel.MenuDto>
+
+@foreach (var tem in Model)
+{
+    if (tem.Name == "条目删除")
+    {
+        <a href="@tem.Address/@ViewBag.ItemID" class="btn btn-danger" onclick="return Delete()"><i class="glyphicon glyphicon-trash"></i></a>
+    }
+
+}

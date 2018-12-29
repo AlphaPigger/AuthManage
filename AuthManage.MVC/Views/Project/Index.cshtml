@@ -10,8 +10,8 @@
         <div class="panel-heading">
             <strong class="strong">项目列表</strong>
             <div class="panel-actions">
-                <a href="~/Project/Add" class="btn-default"><i class="glyphicon glyphicon-plus"></i></a>
-                @*@await Component.InvokeAsync("RoleAdd")*@
+                @*<a href="~/Project/Add" class="btn-default"><i class="glyphicon glyphicon-plus"></i></a>*@
+                @await Component.InvokeAsync("ProjectAdd")
             </div>
             <div class="panel-actions">
                 <form action="~/Project/Index" class="form-inline">
@@ -60,10 +60,10 @@
                                     @Html.DisplayFor(m => item.CreateUser)
                                 </td>
                                 <td class="text-center">
-                                    <a href="~/Project/Edit/@item.ID" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i></a>
-                                    <a href="~/Project/Delete/@item.ID" class="btn btn-danger" onclick="return Delete()"><i class="glyphicon glyphicon-trash"></i></a>
-                                    @*@await Component.InvokeAsync("RoleEdit", item.ID)
-                                @await Component.InvokeAsync("RoleDelete", item.ID)*@
+                                    @*<a href="~/Project/Edit/@item.ID" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i></a>
+                                    <a href="~/Project/Delete/@item.ID" class="btn btn-danger" onclick="return Delete()"><i class="glyphicon glyphicon-trash"></i></a>*@
+                                    @await Component.InvokeAsync("ProjectEdit", item.ID)
+                                    @await Component.InvokeAsync("ProjectDelete", item.ID)
                                 </td>
                             </tr>
                         }

@@ -1,32 +1,96 @@
 ﻿@model List<AuthManage.Application.DTOModel.MenuDto>
 @foreach (var menu in Model)
 {
-    if (menu.ParentName == null||menu.ParentName=="")//判断是否为导航菜单
-    {   
-        <li>
-            <a href="@menu.Address" style="background-color:transparent;">
-                @switch (menu.Name)
-                {
-                    case "组织机构管理":
-                        <i class="glyphicon glyphicon-align-justify"></i>
-                        break;
-                    case "角色管理":
-                        <i class="glyphicon glyphicon-compressed"></i>
-                        break;
-                    case "用户管理":
-                        <i class="glyphicon glyphicon-user"></i>
-                        break;
-                    case "功能管理":
-                        <i class="glyphicon glyphicon-asterisk"></i>
-                        break;
-                    case "角色授权":
-                        <i class="glyphicon glyphicon-briefcase"></i>
-                                break;
-                    default:break;
-                        }
-                        @menu.Name
-             </a>
-        </li>
+    @switch (menu.Name)
+    {
+        case "组织机构管理":
+            <li>
+                <a href="@menu.Address" style="background-color:transparent;">
+                    <i class="glyphicon glyphicon-align-justify"></i>
+                    @menu.Name
+                </a>
+            </li>
+            break;
+        case "角色管理":
+            <li>
+                <a href="@menu.Address" style="background-color:transparent;">
+                    <i class="glyphicon glyphicon-compressed"></i>
+                    @menu.Name
+                </a>
+            </li>
+            break;
+        case "用户管理":
+            <li>
+                <a href="@menu.Address" style="background-color:transparent;">
+                    <i class="glyphicon glyphicon-user"></i>
+                    @menu.Name
+                </a>
+            </li>
+            break;
+        case "功能管理":
+            <li>
+                <a href="@menu.Address" style="background-color:transparent;">
+                    <i class="glyphicon glyphicon-asterisk"></i>
+                    @menu.Name
+                </a>
+            </li>
+            break;
+        case "角色授权":
+            <li>
+                <a href="@menu.Address" style="background-color:transparent;">
+                    <i class="glyphicon glyphicon-briefcase"></i>
+                    @menu.Name
+                </a>
+            </li>
+            break;
+        case "工程管理":
+            <li>
+                <a href="#" style="background-color:transparent;"><i class="glyphicon glyphicon-edit"></i>业务管理<span class="glyphicon glyphicon-chevron-down pull-right"></span></a>
+                <ul>
+                    <li><a href="~/Project/Index" rel="noopener noreferrer"><i class="glyphicon glyphicon-globe"></i>项目管理</a></li>
+                    <li><a href="~/Hardware/Index" rel="noopener noreferrer"><i class="glyphicon glyphicon-screenshot"></i>硬件管理</a></li>
+                    <li><a href="~/Item/Index" rel="noopener noreferrer"><i class="glyphicon glyphicon-list-alt"></i>条目管理</a></li>
+                </ul>
+            </li>
+            break;
     }
 }
+
+    <li>
+        <a href="#" style="background-color:transparent;"><i class="glyphicon glyphicon-edit"></i>业务管理<span class="glyphicon glyphicon-chevron-down pull-right"></span></a>
+        <ul>
+            @foreach (var menu in Model)
+            {
+                switch (menu.Name)
+                {
+                    case "项目管理":
+                        <li>
+                            <a href="@menu.Address">
+                                <i class="glyphicon glyphicon-globe"></i>
+                                @menu.Name
+                            </a>
+                        </li>
+                        break;
+                    case "硬件管理":
+                        <li>
+                            <a href="@menu.Address">
+                                <i class="glyphicon glyphicon-screenshot"></i>
+                                @menu.Name
+                            </a>
+                        </li>
+                        break;
+                    case "条目管理":
+                        <li>
+                            <a href="@menu.Address">
+                                <i class="glyphicon glyphicon-list-alt"></i>
+                                @menu.Name
+                            </a>
+                        </li>
+                        break;
+                }
+
+            }
+        </ul>
+    </li>
+
 

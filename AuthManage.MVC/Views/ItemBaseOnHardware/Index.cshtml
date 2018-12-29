@@ -64,8 +64,8 @@
                                     @Html.DisplayFor(m => item.UpdateUser)
                             </td>
                             <td class="text-center">
-                                <a href="~/ItemBaseOnHardware/Edit/@item.ID" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i></a>
-                                @*@await Component.InvokeAsync("DepartmentEdit", item.ID)*@
+                                @*<a href="~/ItemBaseOnHardware/Edit/@item.ID" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i></a>*@
+                                @await Component.InvokeAsync("ItemBaseOnHardwareEdit", item.ID)
                                 <a onclick="Record(@item.ID)" class="btn btn-success"><i class="glyphicon glyphicon-zoom-in"></i></a>
                                 @*@await Component.InvokeAsync("DepartmentDelete", item.ID)*@
                             </td>

@@ -10,8 +10,8 @@
         <div class="panel-heading">
             <strong class="strong">硬件列表</strong>
             <div class="panel-actions">
-                <a href="~/Hardware/Add" class="btn-default"><i class="glyphicon glyphicon-plus"></i></a>
-                @*@await Component.InvokeAsync("UserAdd")*@
+                @*<a href="~/Hardware/Add" class="btn-default"><i class="glyphicon glyphicon-plus"></i></a>*@
+                @await Component.InvokeAsync("HardwareAdd")
             </div>
             <div class="panel-actions">
                 <form action="~/Hardware/Index" class="form-inline">
@@ -60,11 +60,12 @@
                                     @Html.DisplayFor(m => item.Project)
                                 </td>
                                 <td class="text-center">
-                                    <a href="~/Hardware/Edit/@item.ID" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i></a>
-                                    <a href="~/Hardware/Delete/@item.ID" class="btn btn-danger" onclick="return Delete()"><i class="glyphicon glyphicon-trash"></i></a>
+                                    @*<a href="~/Hardware/Edit/@item.ID" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i></a>
+        <a href="~/Hardware/Delete/@item.ID" class="btn btn-danger" onclick="return Delete()"><i class="glyphicon glyphicon-trash"></i></a>*@
+                                    @await Component.InvokeAsync("HardwareEdit", item.ID)
+                                    @await Component.InvokeAsync("HardwareDelete", item.ID)
                                     <a href="~/ItemBaseOnHardware/Index/@item.ID" class="btn btn-success"><i class="glyphicon glyphicon-cog"></i></a>
-                                    @*@await Component.InvokeAsync("UserEdit", item.ID)
-        @await Component.InvokeAsync("UserDelete", item.ID)*@
+                                    @*@await Component.InvokeAsync("ItemBaseOnHardwareIndex",item.ID)*@
                                 </td>
                             </tr>
                         }

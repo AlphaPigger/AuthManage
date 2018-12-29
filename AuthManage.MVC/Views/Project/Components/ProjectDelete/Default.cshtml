@@ -1,0 +1,15 @@
+﻿
+@{
+    Layout = null;
+}
+
+@model List<AuthManage.Application.DTOModel.MenuDto>
+
+@foreach (var tem in Model)
+{
+    if (tem.Name == "项目删除")
+    {
+        <a href="@tem.Address/@ViewBag.ProjectID" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i></a>
+    }
+
+}
