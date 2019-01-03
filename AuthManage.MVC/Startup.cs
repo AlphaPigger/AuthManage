@@ -40,9 +40,11 @@ namespace AuthManage.MVC
                 options.CheckConsentNeeded = context => false;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
+            //Session服务
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);//配置Session超时时间
+            });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
             //连接Mysql数据库
             var mysqlConnectString = Configuration.GetConnectionString("MysqlConnectString");
             services.AddDbContextPool<DataContext>(options=>options.UseMySql(mysqlConnectString,b=>b.MigrationsAssembly("AuthManage.MVC")));
@@ -69,8 +71,6 @@ namespace AuthManage.MVC
             services.AddScoped<IItemRepository, ItemRepository>();
             services.AddScoped<IRecordAppService,RecordAppService > ();
             services.AddScoped<IRecordRepository, RecordRepository>();
-            //Session服务
-            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -87,7 +87,6 @@ namespace AuthManage.MVC
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
-
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();

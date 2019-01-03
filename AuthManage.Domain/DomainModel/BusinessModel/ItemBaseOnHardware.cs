@@ -9,7 +9,7 @@ namespace AuthManage.Domain.DomainModel.BusinessModel
     {
         //条目名称
         public string Name { get; set; }
-        //状态
+        //状态（最新）
         public int Status { get; set; }
         /**更新时间、更新用户、备注是用来记录最新的一次跟新状态的**/
         //更新时间

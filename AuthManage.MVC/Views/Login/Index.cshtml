@@ -70,11 +70,11 @@
         //验证是否设置了cookie
         if ($.cookie("username") != undefined)
         {
-            //置“记住我”单选框
-            $("#RememberMe").attr("checked", "checked");
             //置用户名、密码文本框
             $("#Username").val($.cookie("username"));
             $("#Password").val($.cookie("password"));
+            //置“记住我”单选框
+            $("#RememberMe").attr("checked", "checked");
         }
     });
 

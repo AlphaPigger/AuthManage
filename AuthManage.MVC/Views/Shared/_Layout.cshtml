@@ -31,9 +31,9 @@
             </ul>
             <ul class="nav navbar-nav navbar-actions navbar-right">
                 <li>
-                    <span style="color:azure">欢迎您，@ViewBag.User</span>
+                    <span style="color:azure">欢迎您，@ViewBag.CurrentUser</span>
                 </li>
-                <li><a href="~/Login/Index"><i class="glyphicon glyphicon-log-out"></i></a></li>
+                <li><a href="~/Login/Index" title="退出登录"><i class="glyphicon glyphicon-log-out"></i></a></li>
             </ul>
         </div>
     </div>
@@ -48,7 +48,7 @@
                     <br />
                     <div class="sidebar-menu">
                         <ul class="nav nav-sidebar">
-                            @await Component.InvokeAsync("Navigation");
+                            @await Component.InvokeAsync("Navigation")
                         </ul>
                     </div>
                     @*<div class="sidebar-menu">

@@ -7,6 +7,8 @@ namespace AuthManage.Domain.DomainModel.BusinessModel
 {
     public class Record:BasicModel<int>
     {
+        //最新状态
+        public int Status { get; set; }
         //更新时间
         public string UpdateTime { get; set; }
         //更新用户

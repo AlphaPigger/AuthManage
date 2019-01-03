@@ -11,7 +11,7 @@ using X.PagedList;
 
 namespace AuthManage.MVC.Controllers
 {
-    public class UserController : Controller
+    public class UserController : ControllerBase
     {
         //中间数据
         private static UserDto temp = new UserDto();

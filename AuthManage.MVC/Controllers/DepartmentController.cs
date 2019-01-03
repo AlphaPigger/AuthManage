@@ -24,7 +24,7 @@ namespace AuthManage.MVC.Controllers
         //主界面
         public IActionResult Index(int Page = 1, int PageSize = 5)
         {
-            ViewBag.User = HttpContext.Session.GetString("CurrentUser");
+            //ViewBag.User = HttpContext.Session.GetString("CurrentUser");
             ViewBag.PageSize = PageSize;//记录每页显示数
             var departmentList = _departmentAppService.GetAllDtos();
             return View(departmentList.ToPagedList(Page, PageSize));

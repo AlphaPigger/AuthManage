@@ -10,7 +10,7 @@ using X.PagedList;
 
 namespace AuthManage.MVC.Controllers
 {
-    public class ProjectController : Controller
+    public class ProjectController : ControllerBase
     {
         private static ProjectDto _projectDto = new ProjectDto();
         //依赖注入

@@ -37,36 +37,37 @@ namespace AuthManage.Application.AppServices
         }
         public void UpdateDto(ItemBaseOnHardwareDto dto, string CurrentUser, int HardwareID)
         {
-            //更新到ItemBaseOnHardware表
             ItemBaseOnHardware itemBaseOnHardware = new ItemBaseOnHardware();
             itemBaseOnHardware.ID = dto.ID;
             itemBaseOnHardware.Name = dto.Name;
-            if (dto.Status == "正常")
+            if (dto.Status == "未测试")
             {
                 itemBaseOnHardware.Status = 0;
             }
-            else
+            else if(dto.Status=="正常")
             {
                 itemBaseOnHardware.Status = 1;
+            }
+            else if (dto.Status == "异常")
+            {
+                itemBaseOnHardware.Status = 2;
             }
             itemBaseOnHardware.UpdateTime = DateTime.Now.ToString();
             itemBaseOnHardware.UpdateUser = CurrentUser;
             itemBaseOnHardware.Remark = dto.Remark;
             itemBaseOnHardware.HardwareID = HardwareID;
-            //添加备注到Record表
-            //当改变真的发生，则写到记录表中
-            var tem=_itemBaseOnHardwareRepository.GetEntityByIDNoTrack(dto.ID);
+            //判断是否修改
+            var tem=_itemBaseOnHardwareRepository.GetEntityByIDNoTrack(dto.ID);//从数据库获取当前修改的对象
             if (tem.Status != itemBaseOnHardware.Status||tem.Remark!=itemBaseOnHardware.Remark)//当界面发生更改，则更新ItemBaseOnHardware表并写入Record表中
             {
-                //更新到ItemBaseOnHardware表
-                _itemBaseOnHardwareRepository.UpdateEntity(itemBaseOnHardware);
-                //写入Record表
+                _itemBaseOnHardwareRepository.UpdateEntity(itemBaseOnHardware);//更新到ItemBaseOnHardware表
                 Record record = new Record();
+                record.Status = itemBaseOnHardware.Status;
                 record.UpdateTime = DateTime.Now.ToString();
                 record.UpdateUser = CurrentUser;
                 record.Remark = dto.Remark;
-                record.ItemBaseOnHardwareID = dto.ID;//record的外键
-                _recordRepository.AddEntity(record);
+                record.ItemBaseOnHardwareID = itemBaseOnHardware.ID;//record的外键
+                _recordRepository.AddEntity(record);//写入Record表
             }
         }
         public ItemBaseOnHardwareDto GetDtoByID(int id)
@@ -77,9 +78,13 @@ namespace AuthManage.Application.AppServices
             itemBaseOnHardwareDto.Name = itemBaseOnHardwareDomain.Name;
             if (itemBaseOnHardwareDomain.Status == 0)
             {
+                itemBaseOnHardwareDto.Status = "未测试";
+            }
+            else if(itemBaseOnHardwareDomain.Status==1)
+            {
                 itemBaseOnHardwareDto.Status = "正常";
             }
-            else
+            else if (itemBaseOnHardwareDomain.Status == 2)
             {
                 itemBaseOnHardwareDto.Status = "异常";
             }
@@ -102,9 +107,13 @@ namespace AuthManage.Application.AppServices
                 itemBaseOnHardwareDto.Name = tem.Name;
                 if (tem.Status == 0)
                 {
+                    itemBaseOnHardwareDto.Status = "未测试";
+                }
+                else if(tem.Status==1)
+                {
                     itemBaseOnHardwareDto.Status = "正常";
                 }
-                else
+                else if (tem.Status == 2)
                 {
                     itemBaseOnHardwareDto.Status = "异常";
                 }

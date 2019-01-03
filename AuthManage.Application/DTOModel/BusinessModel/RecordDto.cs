@@ -9,6 +9,7 @@ namespace AuthManage.Application.DTOModel.BusinessModel
     {
         public string UpdateTime { get; set; }
         public string UpdateUser { get; set; }
+        public string Status { get; set; }
         public string Remark { get; set; }
     }
 }

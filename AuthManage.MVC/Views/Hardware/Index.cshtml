@@ -64,7 +64,7 @@
         <a href="~/Hardware/Delete/@item.ID" class="btn btn-danger" onclick="return Delete()"><i class="glyphicon glyphicon-trash"></i></a>*@
                                     @await Component.InvokeAsync("HardwareEdit", item.ID)
                                     @await Component.InvokeAsync("HardwareDelete", item.ID)
-                                    <a href="~/ItemBaseOnHardware/Index/@item.ID" class="btn btn-success"><i class="glyphicon glyphicon-cog"></i></a>
+                                    <a href="~/ItemBaseOnHardware/Index/@item.ID" class="btn btn-success" title="管理条目"><i class="glyphicon glyphicon-cog"></i></a>
                                     @*@await Component.InvokeAsync("ItemBaseOnHardwareIndex",item.ID)*@
                                 </td>
                             </tr>

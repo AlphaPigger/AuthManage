@@ -11,7 +11,7 @@ using X.PagedList;
 
 namespace AuthManage.MVC.Controllers
 {
-    public class HardwareController : Controller
+    public class HardwareController : ControllerBase
     {
         //中间数据
         private static HardwareDto _hardwareDto = new HardwareDto();

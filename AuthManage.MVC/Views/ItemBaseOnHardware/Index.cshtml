@@ -48,25 +48,29 @@
                                 @Html.DisplayFor(m => item.Name)
                             </td>
                             <td class="text-center">
-                                @if (item.Status == "正常")
+                                @if (item.Status == "未测试")
                                 {
-                                    @Html.DisplayFor(m => item.Status, new { @class = "green" })
+                                    <span style="color:blue">@item.Status</span>
                                 }
-                                else
+                                else if (item.Status == "正常")
                                 {
-                                    @Html.DisplayFor(m => item.Status, new { @class = "red" })
+                                    <span style="color:green">@item.Status</span>
+                                }
+                                else if (item.Status == "异常")
+                                {
+                                    <span style="color:red">@item.Status</span>
                                 }
                             </td>
                             <td class="text-center">
-                                    @Html.DisplayFor(m => item.UpdateTime)
+                                @Html.DisplayFor(m => item.UpdateTime)
                             </td>
                             <td class="text-center">
-                                    @Html.DisplayFor(m => item.UpdateUser)
+                                @Html.DisplayFor(m => item.UpdateUser)
                             </td>
                             <td class="text-center">
                                 @*<a href="~/ItemBaseOnHardware/Edit/@item.ID" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i></a>*@
                                 @await Component.InvokeAsync("ItemBaseOnHardwareEdit", item.ID)
-                                <a onclick="Record(@item.ID)" class="btn btn-success"><i class="glyphicon glyphicon-zoom-in"></i></a>
+                                <a onclick="Record(@item.ID)" class="btn btn-success" title="查看记录"><i class="glyphicon glyphicon-zoom-in"></i></a>
                                 @*@await Component.InvokeAsync("DepartmentDelete", item.ID)*@
                             </td>
                         </tr>
@@ -109,27 +113,28 @@
         });
     }
 
-
     function getDataRow(h)
     {
         var row = document.createElement('tr'); //创建行
 
         var td_updateUser = document.createElement('td');//创建第一列
-        td_updateUser.innerHTML = h.UpdateUser;
-        row.appendChild(td_updateUser);
+        td_updateUser.innerHTML = h.UpdateUser;//填充数据
+        row.appendChild(td_updateUser);//加入到行
 
         var td_updateTime = document.createElement('td'); //创建第二列
-        td_updateTime.innerHTML = h.UpdateTime; //填充数据
-        row.appendChild(td_updateTime); //加入行  ，下面类似
+        td_updateTime.innerHTML = h.UpdateTime; 
+        row.appendChild(td_updateTime); 
 
-        var td_Remark = document.createElement('td');//创建第三列
+        var td_Status = document.createElement('td');//创建第三列
+        td_Status.innerHTML = h.Status;
+        row.appendChild(td_Status);
+
+        var td_Remark = document.createElement('td');//创建第四列
         td_Remark.innerHTML = h.Remark;
         row.appendChild(td_Remark);
 
         return row; //返回tr数据	 
     }	  
-
-
 </script>
 
 <!--模态框，item显示记录-->
@@ -149,6 +154,9 @@
                                 </th>
                                 <th>
                                     更改时间
+                                </th>
+                                <th>
+                                    状态
                                 </th>
                                 <th>
                                     备注

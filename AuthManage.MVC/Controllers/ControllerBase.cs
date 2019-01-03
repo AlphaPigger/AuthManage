@@ -13,12 +13,13 @@ namespace AuthManage.MVC.Controllers
     {
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            string loginUser=context.HttpContext.Session.GetString("CurrentUser");
-            if (loginUser == ""|| loginUser==null)
+            string loginUser=HttpContext.Session.GetString("CurrentUser");
+            if (loginUser == "")
             {
                 context.Result = new RedirectResult("/Login/Index");
                 return;
             }
+            ViewBag.CurrentUser = loginUser;//保存登录用户
             base.OnActionExecuting(context);
         }
     }

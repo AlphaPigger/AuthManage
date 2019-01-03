@@ -13,7 +13,7 @@ using X.PagedList;
 
 namespace AuthManage.MVC.Controllers
 {
-    public class ItemBaseOnHardwareController : Controller
+    public class ItemBaseOnHardwareController : ControllerBase
     {
         private static int HardwareID=0;
         //依赖注入
@@ -67,6 +67,7 @@ namespace AuthManage.MVC.Controllers
         private void GenerateViewDatas()
         {
             List<SelectListItem> selectListItems = new List<SelectListItem>();
+            selectListItems.Add(new SelectListItem("未测试","未测试"));
             selectListItems.Add(new SelectListItem("正常","正常"));
             selectListItems.Add(new SelectListItem("异常", "异常"));
             ViewData["Status"] = selectListItems;

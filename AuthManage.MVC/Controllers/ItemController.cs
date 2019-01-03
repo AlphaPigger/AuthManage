@@ -10,7 +10,7 @@ using X.PagedList;
 
 namespace AuthManage.MVC.Controllers
 {
-    public class ItemController : Controller
+    public class ItemController : ControllerBase
     {
         private static ItemDto _ItemDto = new ItemDto();
 
