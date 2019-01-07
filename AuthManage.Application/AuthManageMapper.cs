@@ -14,26 +14,26 @@ namespace AuthManage.Application
         {
             Mapper.Initialize(cfg =>
             {
-                cfg.CreateMap<Department, DepartmentDto>();
                 cfg.CreateMap<DepartmentDto, Department>();
+                cfg.CreateMap<Department, DepartmentDto>();
                 cfg.CreateMap<RoleDto, Role>();
                 cfg.CreateMap<Role, RoleDto>();
                 cfg.CreateMap<UserDto, User>();
                 cfg.CreateMap<User, UserDto>();
-                cfg.CreateMap<Menu, MenuDto>();
                 cfg.CreateMap<MenuDto, Menu>();
-                cfg.CreateMap<RoleUser, RoleDto>();
+                cfg.CreateMap<Menu, MenuDto>();
                 cfg.CreateMap<RoleUserDto, RoleUser>();
-                cfg.CreateMap<RoleMenu,RoleMenuDto>();
+                cfg.CreateMap<RoleUser, RoleDto>();
                 cfg.CreateMap<RoleMenuDto, RoleMenu>();
-                cfg.CreateMap<Project, ProjectDto>();
+                cfg.CreateMap<RoleMenu, RoleMenuDto>();
                 cfg.CreateMap<ProjectDto, Project>();
-                cfg.CreateMap<Hardware, HardwareDto>();
+                cfg.CreateMap<Project, ProjectDto>();
                 cfg.CreateMap<HardwareDto, Hardware>();
-                cfg.CreateMap<ItemBaseOnHardware, ItemDto>();
-                cfg.CreateMap<ItemDto, ItemBaseOnHardware>();
-                cfg.CreateMap<Item,ItemDto>();
+                cfg.CreateMap<Hardware, HardwareDto>();
+                cfg.CreateMap<ItemBaseOnHardwareDto, ItemBaseOnHardware>();
+                cfg.CreateMap<ItemBaseOnHardware, ItemBaseOnHardwareDto>();
                 cfg.CreateMap<ItemDto,Item>();
+                cfg.CreateMap<Item, ItemDto>();
             });
         }
     }
