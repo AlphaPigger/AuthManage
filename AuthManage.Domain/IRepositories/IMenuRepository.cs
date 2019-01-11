@@ -7,5 +7,6 @@ namespace AuthManage.Domain.IRepositories
 {
     public interface IMenuRepository:IRepository<Menu>
     {
+        
     }
 }

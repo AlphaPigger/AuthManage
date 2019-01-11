@@ -13,5 +13,6 @@ namespace AuthManage.Application.IAppServices
         void UpdateDto(HardwareDto hardwareDto);
         HardwareDto GetDtoByID(int id);
         List<HardwareDto> GetHardwareDtos();
+        List<HardwareDto> GetHardwareDtosByProjectID(int ProjectID);//通过项目ID获取所有硬件
     }
 }

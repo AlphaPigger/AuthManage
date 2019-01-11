@@ -15,11 +15,13 @@ namespace AuthManage.Application.AppServices
         private IHardwareRepository _hardwareRepository;
         private DataContext _dataContext;
         private IItemBaseOnHardwareRepository _itemBaseOnHardwareRepository;
-        public HardwareAppService(IHardwareRepository hardwareRepository,DataContext dataContext,IItemBaseOnHardwareRepository itemBaseOnHardwareRepository)
+        private IProjectRepository _projectRepository;
+        public HardwareAppService(IHardwareRepository hardwareRepository,DataContext dataContext,IItemBaseOnHardwareRepository itemBaseOnHardwareRepository,IProjectRepository projectRepository)
         {
             _hardwareRepository = hardwareRepository;
             _dataContext = dataContext;
             _itemBaseOnHardwareRepository = itemBaseOnHardwareRepository;
+            _projectRepository = projectRepository;
         }
 
         public void AddDto(HardwareDto hardwareDto)
@@ -27,6 +29,7 @@ namespace AuthManage.Application.AppServices
             Hardware hardwareDomain = new Hardware();
             hardwareDomain.ID = hardwareDto.ID;
             hardwareDomain.Name = hardwareDto.Name;
+            hardwareDomain.Number = hardwareDto.Number;
             hardwareDomain.CreateTime = hardwareDto.CreateTime;
             hardwareDomain.CreateUser = hardwareDto.CreateUser;
             //转换工程名为工程id
@@ -66,6 +69,7 @@ namespace AuthManage.Application.AppServices
             Hardware hardware = new Hardware();
             hardware.ID = hardwareDto.ID;//这里的ID必须给值，不然更新不到数据库
             hardware.Name = hardwareDto.Name;
+            hardware.Number = hardwareDto.Number;
             hardware.CreateTime = hardwareDto.CreateTime;
             hardware.CreateUser = hardwareDto.CreateUser;
             //转换工程名为id
@@ -81,6 +85,7 @@ namespace AuthManage.Application.AppServices
             HardwareDto hardwareDto = new HardwareDto();
             var hardwareDomain = _hardwareRepository.GetEntityByID(id);
             hardwareDto.ID = hardwareDomain.ID;//这个ID不用给值，到时候返回也拿得到
+            hardwareDto.Number = hardwareDomain.Number;
             hardwareDto.Name = hardwareDomain.Name;
             hardwareDto.CreateTime = hardwareDomain.CreateTime;
             hardwareDto.CreateUser = hardwareDomain.CreateUser;
@@ -101,6 +106,7 @@ namespace AuthManage.Application.AppServices
                 HardwareDto hardwareDto = new HardwareDto();
                 hardwareDto.ID = hardwareDomain.ID;
                 hardwareDto.Name = hardwareDomain.Name;
+                hardwareDto.Number = hardwareDomain.Number;
                 hardwareDto.CreateTime = hardwareDomain.CreateTime;
                 hardwareDto.CreateUser = hardwareDomain.CreateUser;
                 //转换工程id为工程名
@@ -108,6 +114,33 @@ namespace AuthManage.Application.AppServices
                 foreach (var project in projects)
                 {
                     hardwareDto.Project = project.Name;
+                }
+                hardwareDtos.Add(hardwareDto);
+            }
+            return hardwareDtos;
+        }
+
+        public List<HardwareDto> GetHardwareDtosByProjectID(int ProjectID)
+        {
+            List<HardwareDto> hardwareDtos = new List<HardwareDto>();
+            var hardwares=_hardwareRepository.GetEntitiesByProjectID(ProjectID);
+            //转换Domain为Dto
+            foreach(var hardware in hardwares)
+            {
+                HardwareDto hardwareDto = new HardwareDto();
+                hardwareDto.ID = hardware.ID;
+                hardwareDto.Name = hardware.Name;
+                hardwareDto.Number = hardware.Number;
+                hardwareDto.CreateTime = hardware.CreateTime;
+                hardwareDto.CreateUser = hardware.CreateUser;
+                //将项目ID转化为对应项目名
+                var projects = _projectRepository.GetAllEntities();
+                foreach(var project in projects)
+                {
+                    if (project.ID == hardware.ProjectID)
+                    {
+                        hardwareDto.Project = project.Name;
+                    }
                 }
                 hardwareDtos.Add(hardwareDto);
             }

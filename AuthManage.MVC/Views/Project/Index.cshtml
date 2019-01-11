@@ -48,7 +48,7 @@
                         {
                             <tr>
                                 <td class="text-center">
-                                    @Html.DisplayFor(m => item.Name)
+                                    @Html.ActionLink(item.Name,"GetHardwaresByProjectID","Hardware",new { ProjectID=item.ID})
                                 </td>
                                 <td class="text-center">
                                     @Html.DisplayFor(m => item.Description)

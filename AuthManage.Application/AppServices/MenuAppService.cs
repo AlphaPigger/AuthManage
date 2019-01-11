@@ -30,15 +30,15 @@ namespace AuthManage.Application.AppServices
         {
             var menuDomain = new Menu();
             menuDomain.ID = menuDto.ID;
+            //转换父级名为父级ID
             if (menuDto.ParentName != "")
             {
-                //转换父级ID
-                var tems=_menuRepository.GetAllEntities();
-                foreach (var tem in tems)
+                var menus=_menuRepository.GetAllEntities();
+                foreach (var menu in menus)
                 {
-                    if (tem.Name == menuDto.ParentName)
+                    if (menu.Name == menuDto.ParentName)
                     {
-                        menuDomain.ParentID = tem.ID;
+                        menuDomain.ParentID = menu.ID;
                     }
                 }
             }
@@ -69,6 +69,18 @@ namespace AuthManage.Application.AppServices
         {
             Menu menuDomain = new Menu();
             menuDomain.ID = menuDto.ID;
+            //转换父级名为父级ID号
+            if (menuDto.ParentName != "")
+            {
+                var menus = _menuRepository.GetAllEntities();
+                foreach (var menu in menus)
+                {
+                    if (menuDto.ParentName == menu.Name)
+                    {
+                        menuDomain.ParentID = menu.ID;
+                    }
+                }
+            }
             menuDomain.Name = menuDto.Name;
             menuDomain.Address = menuDto.Address;
             if (menuDto.MenuType == "导航菜单")
@@ -82,7 +94,9 @@ namespace AuthManage.Application.AppServices
             menuDomain.CreateTime = menuDto.CreateTime;
             menuDomain.CreateUser = menuDto.CreateUser;
             //更新实体
-            _menuRepository.UpdateEntity(menuDomain);
+            _menuRepository.DeleteEntityById(menuDto.ID);
+            _menuRepository.AddEntity(menuDomain);
+            //_menuRepository.UpdateEntity(menuDomain);
         }
         public MenuDto GetDtoByID(int id)
         {

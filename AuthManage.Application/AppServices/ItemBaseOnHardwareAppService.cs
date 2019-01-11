@@ -23,9 +23,12 @@ namespace AuthManage.Application.AppServices
             _dataContext = dataContext;
         }
 
-        public void AddDto(ItemBaseOnHardwareDto dto)
+        public void AddDto(ItemBaseOnHardwareDto dto,int HardwareID)
         {
-
+            ItemBaseOnHardware itemBaseOnHardware = new ItemBaseOnHardware();
+            itemBaseOnHardware.Name = dto.Name;
+            itemBaseOnHardware.HardwareID = HardwareID;
+            _itemBaseOnHardwareRepository.AddEntity(itemBaseOnHardware);
         }
         public void DeleteDto(ItemBaseOnHardwareDto dto)
         {
@@ -33,7 +36,7 @@ namespace AuthManage.Application.AppServices
         }
         public void DeleteDtoById(int id)
         {
-
+            _itemBaseOnHardwareRepository.DeleteEntityById(id);
         }
         public void UpdateDto(ItemBaseOnHardwareDto dto, string CurrentUser, int HardwareID)
         {

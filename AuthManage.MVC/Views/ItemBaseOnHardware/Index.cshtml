@@ -11,6 +11,9 @@
         <div class="panel-heading">
             <strong class="strong">硬件条目列表</strong>
             <div class="panel-actions">
+                @await Component.InvokeAsync("ItemBaseOnHardwareAdd")
+            </div>
+            <div class="panel-actions">
                 <form action="~/ItemBaseOnHardware/Index" class="form-inline">
                     <span class="form-control" style="border:0px;margin-bottom:1px">每页指定记录数：</span>
                     @Html.TextBox("PageSize", ViewBag.PageSize as string, new { @class = "form-control", @style = "margin-top:-1px;width:150px;margin-right:20px", maxlength = 1, placeholder = "请输入分页记录数" })
@@ -70,8 +73,8 @@
                             <td class="text-center">
                                 @*<a href="~/ItemBaseOnHardware/Edit/@item.ID" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i></a>*@
                                 @await Component.InvokeAsync("ItemBaseOnHardwareEdit", item.ID)
+                                @await Component.InvokeAsync("ItemBaseOnHardwareDelete", item.ID)
                                 <a onclick="Record(@item.ID)" class="btn btn-success" title="查看记录"><i class="glyphicon glyphicon-zoom-in"></i></a>
-                                @*@await Component.InvokeAsync("DepartmentDelete", item.ID)*@
                             </td>
                         </tr>
                         }
@@ -135,6 +138,13 @@
 
         return row; //返回tr数据	 
     }	  
+
+
+    //删除操作
+    function Delete() {
+        var bool = confirm("确认删除吗？");
+        return bool;
+    }
 </script>
 
 <!--模态框，item显示记录-->

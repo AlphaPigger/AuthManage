@@ -19,10 +19,12 @@ namespace AuthManage.MVC.Controllers
         //依赖注入
         private IItemBaseOnHardwareAppService _itemBaseOnHardwareAppService;
         private IRecordAppService _recordAppService;
-        public ItemBaseOnHardwareController(IItemBaseOnHardwareAppService itemBaseOnHardwareAppService,IRecordAppService recordAppService)
+        private IItemAppService _itemAppService;
+        public ItemBaseOnHardwareController(IItemBaseOnHardwareAppService itemBaseOnHardwareAppService,IRecordAppService recordAppService,IItemAppService itemAppService)
         {
             _itemBaseOnHardwareAppService = itemBaseOnHardwareAppService;
             _recordAppService = recordAppService;
+            _itemAppService = itemAppService;
         }
         //查询
         public IActionResult Index(int Page=1,int PageSize=5,int ID=0)//这里ID为硬件ID标识
@@ -34,6 +36,29 @@ namespace AuthManage.MVC.Controllers
             }
             var dtos=_itemBaseOnHardwareAppService.GetDtosByHardwareID(HardwareID);
             return View(dtos.ToPagedList(Page,PageSize));
+        }
+        //增加
+        public IActionResult Add()
+        {
+            GenerateViewDatas();
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Add(ItemBaseOnHardwareDto itemBaseOnHardwareDto)
+        {
+            if (ModelState.IsValid)
+            {
+                _itemBaseOnHardwareAppService.AddDto(itemBaseOnHardwareDto,HardwareID);
+                return RedirectToAction("Index");
+            }
+            GenerateViewDatas();
+            return View(itemBaseOnHardwareDto);
+        }
+        //删除
+        public IActionResult Delete(int id)
+        {
+            _itemBaseOnHardwareAppService.DeleteDtoById(id);
+            return RedirectToAction("Index");
         }
         //修改
         public IActionResult Edit(int id)
@@ -71,6 +96,14 @@ namespace AuthManage.MVC.Controllers
             selectListItems.Add(new SelectListItem("正常","正常"));
             selectListItems.Add(new SelectListItem("异常", "异常"));
             ViewData["Status"] = selectListItems;
+            selectListItems = new List<SelectListItem>();
+            //获取所有条目项
+            var items=_itemAppService.GetAllDtos();
+            foreach(var item in items)
+            {
+                selectListItems.Add(new SelectListItem(item.Name,item.Name));
+            }
+            ViewData["Items"] = selectListItems;
         }
     }
 }

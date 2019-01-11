@@ -505,7 +505,7 @@ border-color : #79859b;
     position: fixed;
     width: 100%;
     z-index: 11;
-    background: url('../images/bgImage.jpg');
+    background: url('../images/HomePic.jpg');
 }
 .navbar .navbar-actions {
   font-size: 20px;
@@ -771,7 +771,7 @@ border-color : #79859b;
 =================================================================== */
 .sidebar {
   background: #181d20;  
-  background:url('../images/bgImage.jpg');
+  background:url('../images/HomePic.jpg');
   color: #cccccc;
   position: fixed;
   top: 0;
@@ -901,7 +901,7 @@ border-color : #79859b;
         background: #181d20;
         height: 140px;
         border-top: 1px solid transparent;
-        background: url('../images/bgImage.jpg')fixed;/*sidebar footer*/
+        background: url('../images/HomePic.jpg')fixed;/*sidebar footer*/
     }
 .sidebar .sidebar-footer.drop-shadow {
   -webkit-box-shadow: 0 -3px 1px -1px rgba(0, 0, 0, 0.05);

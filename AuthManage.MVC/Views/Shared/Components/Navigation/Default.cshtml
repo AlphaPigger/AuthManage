@@ -13,57 +13,8 @@
     }
     @if (configFlag == true)
     {
-        <a href="#" style="background-color:transparent;"><i class="glyphicon glyphicon-asterisk"></i>配置管理<span class="glyphicon glyphicon-chevron-down pull-right"></span></a>
+        <a href="/Configure/Index"><i class="glyphicon glyphicon-asterisk"></i><span style="color:floralwhite">配置管理</span></a>
     }
-    <ul>
-        @foreach (var menu in Model)
-        {
-            switch (menu.Name)
-            {
-                case "组织机构管理":
-                    <li>
-                        <a href="@menu.Address" style="background-color:transparent;">
-                            <i class="glyphicon glyphicon-align-justify"></i>
-                            @menu.Name
-                        </a>
-                    </li>
-                    break;
-                case "角色管理":
-                    <li>
-                        <a href="@menu.Address" style="background-color:transparent;">
-                            <i class="glyphicon glyphicon-compressed"></i>
-                            @menu.Name
-                        </a>
-                    </li>
-                    break;
-                case "用户管理":
-                    <li>
-                        <a href="@menu.Address" style="background-color:transparent;">
-                            <i class="glyphicon glyphicon-user"></i>
-                            @menu.Name
-                        </a>
-                    </li>
-                    break;
-                case "功能管理":
-                    <li>
-                        <a href="@menu.Address" style="background-color:transparent;">
-                            <i class="glyphicon glyphicon-book"></i>
-                            @menu.Name
-                        </a>
-                    </li>
-                    break;
-                case "角色授权":
-                    <li>
-                        <a href="@menu.Address" style="background-color:transparent;">
-                            <i class="glyphicon glyphicon-briefcase"></i>
-                            @menu.Name
-                        </a>
-                    </li>
-                    break;
-            }
-
-        }
-    </ul>
 </li>
 
 <li>
@@ -79,41 +30,25 @@
     }
     @if (businessFlag == true)
     {
-        <a href="#" style="background-color:transparent;"><i class="glyphicon glyphicon-edit"></i>业务管理<span class="glyphicon glyphicon-chevron-down pull-right"></span></a>
+        <a href="/Business/Index"><i class="glyphicon glyphicon-th"></i><span style="color:floralwhite">业务管理</span></a>
     }
-    <ul>
-        @foreach (var menu in Model)
-        {
-            switch (menu.Name)
-            {
-                case "项目管理":
-                    <li>
-                        <a href="@menu.Address">
-                            <i class="glyphicon glyphicon-globe"></i>
-                            @menu.Name
-                        </a>
-                    </li>
-                    break;
-                case "硬件管理":
-                    <li>
-                        <a href="@menu.Address">
-                            <i class="glyphicon glyphicon-screenshot"></i>
-                            @menu.Name
-                        </a>
-                    </li>
-                    break;
-                case "条目管理":
-                    <li>
-                        <a href="@menu.Address">
-                            <i class="glyphicon glyphicon-list-alt"></i>
-                            @menu.Name
-                        </a>
-                    </li>
-                    break;
-            }
+</li>
 
+<li>
+    @{
+        bool toolFlag = false;
+    }
+    @foreach (var menu in Model)
+    {
+        if (menu.Name == "链路预算")
+        {
+            toolFlag = true;
         }
-    </ul>
+    }
+    @if (toolFlag)
+    {
+        <a href="/Tool/Index"><i class="glyphicon glyphicon-wrench"></i><span style="color:floralwhite">工具栏</span></a>
+    }
 </li>
 
 

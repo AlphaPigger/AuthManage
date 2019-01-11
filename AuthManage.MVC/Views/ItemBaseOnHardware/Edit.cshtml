@@ -31,7 +31,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.Remark, new { @class = "control-label col-md-2" })
                         <div class="col-md-2">
-                            @Html.TextBoxFor(model => model.Remark, new { @class = "form-control input-sm" })
+                            @Html.TextAreaFor(model => model.Remark, new { @class = "form-control input-sm" ,@style="height:60px"})
                             @Html.ValidationMessageFor(model => model.Remark, "", new { @class = "red" })
                         </div>
                     </div>

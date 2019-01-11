@@ -12,8 +12,6 @@
         <div class="panel-heading">
             <strong class="strong">功能列表</strong>
             <div class="panel-actions">
-                @*<a href="~/Menu/AddParent" class="btn-default">新增顶级</a>
-        <a href="~/Menu/Add" class="btn-default"><i class="glyphicon glyphicon-plus"></i></a>*@
                 @await Component.InvokeAsync("MenuAddParent")
                 @await Component.InvokeAsync("MenuAdd")
             </div>

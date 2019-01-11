@@ -30,7 +30,7 @@ namespace AuthManage.MVC.Controllers
                 if (loginModel.Username == "admin" && loginModel.Password == "admin")
                 {
                     HttpContext.Session.SetString("CurrentUser", "admin");
-                    return RedirectToAction("Index", "Department");
+                    return RedirectToAction("Index", "Project");
                 }
                 //调用接口
                 var obj=_userAppService.CheckUser(loginModel.Username,loginModel.Password);
@@ -42,7 +42,7 @@ namespace AuthManage.MVC.Controllers
                 {
                     HttpContext.Session.SetString("CurrentUser", obj.Username);
                     HttpContext.Session.SetString("CurrentUserID",obj.ID.ToString());
-                    return RedirectToAction("Index", "Department");
+                    return RedirectToAction("Index", "Project");
                 }
             }
             return View(loginModel);

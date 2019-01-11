@@ -15,6 +15,8 @@ namespace AuthManage.MVC.Controllers
     {
         //中间数据
         private static HardwareDto _hardwareDto = new HardwareDto();
+        private static bool RedirectFlag=false;
+        private static List<HardwareDto> HardwareDtos = new List<HardwareDto>();
         //依赖注入
         private IHardwareAppService _hardwareAppService;
         private IProjectAppService _projectAppService;
@@ -30,9 +32,17 @@ namespace AuthManage.MVC.Controllers
         //查询
         public IActionResult Index(int Page=1,int PageSize=5)
         {
-            ViewBag.PageSize = PageSize;
-            var hardwareDtos=_hardwareAppService.GetHardwareDtos();
-            return View(hardwareDtos.ToPagedList(Page,PageSize));
+            if (RedirectFlag)//重定向
+            {
+                RedirectFlag = false;
+                return View(HardwareDtos.ToPagedList(Page, PageSize));
+            }
+            else
+            {
+                ViewBag.PageSize = PageSize;
+                var hardwareDtos = _hardwareAppService.GetHardwareDtos();
+                return View(hardwareDtos.ToPagedList(Page, PageSize));
+            }
         }
         //增加
         public IActionResult Add()
@@ -80,12 +90,15 @@ namespace AuthManage.MVC.Controllers
             GenerateViewDatas();
             return View(hardwareDto);
         }
-        //管理条目
-        //public IActionResult Management(int HardwareID)//硬件ID
-        //{
-        //    var itemBaseOnHardwareDtos=_itemBaseOnHardwareAppService.GetDtosByHardwareID(HardwareID);
-        //    return View(itemBaseOnHardwareDtos);
-        //}
+        //通过ProjectID获取所有硬件
+        public IActionResult GetHardwaresByProjectID(int ProjectID)
+        {
+            RedirectFlag = true;
+            var hardwareDtos=_hardwareAppService.GetHardwareDtosByProjectID(ProjectID);
+            HardwareDtos = hardwareDtos;
+            //重定向
+            return RedirectToAction("Index");
+        }
 
         private void GenerateTempDatas(HardwareDto hardwareDto)
         {

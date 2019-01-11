@@ -1,0 +1,18 @@
+﻿
+@model List<AuthManage.Application.DTOModel.MenuDto>
+
+@foreach (var menu in Model)
+{
+    if (menu.Name == "项目管理" || menu.Name == "硬件管理" || menu.Name == "条目管理")
+    {
+        <a href="@menu.Address" class="custom2">@menu.Name</a>
+    }
+}
+
+<style type="text/css">
+    .custom2 {
+        float: left;
+        width: 100px;
+    }
+</style>
+

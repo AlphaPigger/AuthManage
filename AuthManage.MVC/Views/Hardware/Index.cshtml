@@ -30,6 +30,9 @@
                                 @Html.DisplayNameFor(m => Model.AsEnumerable().Single().Name)
                             </th>
                             <th class="text-center">
+                                @Html.DisplayNameFor(m=>Model.AsEnumerable().Single().Number)
+                            </th>
+                            <th class="text-center">
                                 @Html.DisplayNameFor(m => Model.AsEnumerable().Single().CreateTime)
                             </th>
                             <th class="text-center">
@@ -46,28 +49,31 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr>
-                                <td class="text-center">
-                                    @Html.DisplayFor(m => item.Name)
-                                </td>
-                                <td class="text-center">
-                                    @Html.DisplayFor(m => item.CreateTime)
-                                </td>
-                                <td class="text-center">
-                                    @Html.DisplayFor(m => item.CreateUser)
-                                </td>
-                                <td class="text-center">
-                                    @Html.DisplayFor(m => item.Project)
-                                </td>
-                                <td class="text-center">
-                                    @*<a href="~/Hardware/Edit/@item.ID" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i></a>
-        <a href="~/Hardware/Delete/@item.ID" class="btn btn-danger" onclick="return Delete()"><i class="glyphicon glyphicon-trash"></i></a>*@
-                                    @await Component.InvokeAsync("HardwareEdit", item.ID)
-                                    @await Component.InvokeAsync("HardwareDelete", item.ID)
-                                    <a href="~/ItemBaseOnHardware/Index/@item.ID" class="btn btn-success" title="管理条目"><i class="glyphicon glyphicon-cog"></i></a>
-                                    @*@await Component.InvokeAsync("ItemBaseOnHardwareIndex",item.ID)*@
-                                </td>
-                            </tr>
+                        <tr>
+                            <td class="text-center">
+                                @Html.ActionLink(item.Name,"Index", "ItemBaseOnHardware",new { ID=item.ID})
+                            </td>
+                            <td class="text-center">
+                                @Html.DisplayFor(m => item.Number)
+                            </td>
+                            <td class="text-center">
+                                @Html.DisplayFor(m => item.CreateTime)
+                            </td>
+                            <td class="text-center">
+                                @Html.DisplayFor(m => item.CreateUser)
+                            </td>
+                            <td class="text-center">
+                                @Html.DisplayFor(m => item.Project)
+                            </td>
+                            <td class="text-center">
+                                @*<a href="~/Hardware/Edit/@item.ID" class="btn btn-info"><i class="glyphicon glyphicon-edit"></i></a>
+                                  <a href="~/Hardware/Delete/@item.ID" class="btn btn-danger" onclick="return Delete()"><i class="glyphicon glyphicon-trash"></i></a>*@
+                                @await Component.InvokeAsync("HardwareEdit", item.ID)
+                                @await Component.InvokeAsync("HardwareDelete", item.ID)
+                                <a href="~/ItemBaseOnHardware/Index/@item.ID" class="btn btn-success" title="管理硬件条目"><i class="glyphicon glyphicon-cog"></i></a>
+                                @*@await Component.InvokeAsync("ItemBaseOnHardwareIndex",item.ID)*@
+                            </td>
+                        </tr>
                         }
                     </tbody>
                     <tfoot>

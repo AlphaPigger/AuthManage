@@ -102,9 +102,9 @@ namespace AuthManage.MVC.Controllers
             List<SelectListItem> selectListItems = new List<SelectListItem>();
             selectListItems.Add(new SelectListItem("硬件工程师", "硬件工程师"));
             selectListItems.Add(new SelectListItem("基带工程师", "基带工程师"));
-            selectListItems.Add(new SelectListItem("信号处理工程师", "信号处理工程师"));
             selectListItems.Add(new SelectListItem("嵌入式工程师", "嵌入式工程师"));
             selectListItems.Add(new SelectListItem("软件工程师", "软件工程师"));
+            selectListItems.Add(new SelectListItem("其他","其他"));
             ViewData["PostTypes"] = selectListItems;
             //部门
             selectListItems = new List<SelectListItem>();

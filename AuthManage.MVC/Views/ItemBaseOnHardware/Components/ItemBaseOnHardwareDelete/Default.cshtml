@@ -1,0 +1,9 @@
+﻿@model List<AuthManage.Application.DTOModel.MenuDto>
+
+@foreach (var menu in Model)
+{
+    if (menu.Name == "硬件条目删除")
+    {
+        <a href="@menu.Address/@ViewBag.ItemBaseOnHardwareID" class="btn btn-danger" onclick="return Delete()"><i class="glyphicon glyphicon-trash"></i></a>
+    }
+}
