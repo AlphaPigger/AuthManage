@@ -9,8 +9,10 @@ namespace AuthManage.Application.DTOModel.BusinessModel
     public class HardwareDto:BasicModel<int>
     {
         [Display(Name ="硬件名称")]
+        [Required(ErrorMessage ="硬件名称不能为空")]
         public string Name { get; set; }
         [Display(Name ="编号")]
+        [Required(ErrorMessage = "硬件编号不能为空")]
         public string Number { get; set; }
         [Display(Name ="创建时间")]
         public string CreateTime { get; set; }

@@ -9,6 +9,7 @@ namespace AuthManage.Application.DTOModel.BusinessModel
     public class ItemDto:BasicModel<int>
     {
         [Display(Name="条目名称")]
+        [Required(ErrorMessage = "条目名称不能为空")]
         public string Name { get; set; }
         [Display(Name ="创建时间")]
         public string CreateTime { get; set; }
