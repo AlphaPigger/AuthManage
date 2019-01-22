@@ -94,18 +94,23 @@
 </div>
 
 <script type="text/javascript">
-    function Record(ID) {
+    function Record(ID)
+    {
         //异步执行获取数据
-        $.ajax({
+        $.ajax
+        ({
             url: "/ItemBaseOnHardware/Record",
             type: "post",
-            data: {
+            data: 
+            {
                 "ItemBaseOnHardwareID": ID
             },
-            success: function (data) {
+            success: function (data)
+            {
                 $("#Records").empty();
                 var obj = JSON.parse(data);
-                for (var i = 0; i < obj.length; i++) {
+                for (var i = 0; i < obj.length; i++)
+                {
                     //向表格填充数据
                     var row = getDataRow(obj[i]);
                     $("#Records").append(row);
@@ -138,7 +143,6 @@
 
         return row; //返回tr数据	 
     }	  
-
 
     //删除操作
     function Delete() {
